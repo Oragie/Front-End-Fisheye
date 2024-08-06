@@ -1,17 +1,14 @@
-function photographerTemplate(data) {
-  const { name, portrait } = data;
+import { PhotographerCard } from "../components/PhotographerCard.js";
 
-  const picture = `assets/photographers/${portrait}`;
-
-  function UserCardDOM() {
-    const article = document.createElement("article");
-    const img = document.createElement("img");
-    img.setAttribute("src", picture);
-    const h2 = document.createElement("h2");
-    h2.textContent = name;
-    article.appendChild(img);
-    article.appendChild(h2);
-    return article;
+export function photographerTemplate() {
+  function createPhotographersGallery(photographers) {
+    const photographerSection = document.querySelector(".photographer_section");
+    photographerSection.innerHTML = ""; // Clear any existing content
+    photographers.forEach((photographer) => {
+      const card = PhotographerCard(photographer);
+      photographerSection.appendChild(card); // à sortir pour reutiliser
+    });
   }
-  return { name, picture, UserCardDOM };
+
+  return { createPhotographersGallery };
 }
