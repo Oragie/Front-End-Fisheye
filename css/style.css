@@ -7,71 +7,83 @@
 
 }
 
+body {
+    font-family: "DM Sans", sans-serif;
+    margin: 0;
+}
+
+
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
 }
 
-header .logo {
-  max-height: 50px;
+h1 {
+    color: var(--primary-color);
+    margin-right: 100px;
 }
 
-header h1 {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 36px;
-  font-weight: 400;
-  line-height: 46.87px;
-  text-align: center;
+.logo {
+    height: 50px;
+    margin-left: 100px;
 }
 
+
+/* Styles pour les cartes des photographes */
 .photographer_section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+  
+  .photographer_card {
+    width: 30%;
+    margin-bottom: 20px;
+    text-align: center;
+    
+  }
+  
+  .profile_image {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    overflow-clip-margin: unset;
+  }
+  
+  /* Style pour le nom */
+  .photographer_card h2 {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--primary-color);
 
-.photographer_section article {
-  flex: 0 1 calc(33% - 20px);
-  margin: 10px;
-  text-align: center;
-}
-
-.photographer_section img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-}
-
-.photographer_section h2 {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 36px;
-  font-weight: 400;
-  line-height: 46.87px;
-  text-align: center;
-}
-
-.photographer_section p {
-  font-family: 'DM Sans', sans-serif;
-  text-align: center;
-}
-
-.photographer_section p:nth-of-type(1) {
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 16.93px;
-}
-
-.photographer_section p:nth-of-type(2) {
-  font-size: 10px;
-  font-weight: 400;
-  line-height: 13.02px;
-}
-
-.photographer_section p:nth-of-type(3) {
-  font-size: 9px;
-  font-weight: 400;
-  line-height: 11.72px;
-}
+  }
+  
+  /* Style pour la localisation */
+  .photographer_card .location {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--secondary-color);
+  }
+  
+  /* Style pour la tagline */
+  .photographer_card .tagline {
+    margin: 0;
+    font-size: 10px;
+    font-weight: 400;
+    
+  }
+  
+  /* Style pour le tarif */
+  .photographer_card .price {
+    margin: 0;
+    font-size: 9px;
+    font-weight: 400;
+    color: var(--price-color);
+  }
