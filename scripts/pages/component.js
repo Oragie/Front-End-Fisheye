@@ -1,63 +1,38 @@
-// Fonction pour créer la navbar
-export function createNavbar() {
-  const navbar = document.createElement("header");
-  navbar.innerHTML = `
-      <a href="index.html">
-        <img src="assets/images/logo.png" class="logo" alt="fisheye logo" />
-      </a>
-      <h1>Nos photographes</h1>
-    `;
-  return navbar;
-}
+// function to build layout to the photographer index profil
+export function createPhotographerCards(photographers) {
+  const photographerSection = document.querySelector(".photographer_section");
+  photographerSection.innerHTML = ""; // Clear any existing content
 
-// Exemple de données de photographes (à remplacer par les données réelles)
-export const photographersData = [
-  {
-    name: "Ma data test",
-    id: 1,
-    city: "Paris",
-    country: "France",
-    tagline: "Ceci est ma data test",
-    price: 400,
-    portrait: "account.png",
-  },
-  {
-    name: "Autre data test",
-    id: 2,
-    city: "Londres",
-    country: "UK",
-    tagline: "Ceci est ma data test 2",
-    price: 500,
-    portrait: "account.png",
-  },
-  // Ajoutez ici d'autres photographes si nécessaire
-];
-
-// Fonction pour créer le modèle de "card" de photographe
-export function photographerTemplate(photographer) {
-  return {
-    getUserCardDOM() {
-      const article = document.createElement("article");
-      article.classList.add("photographer_card");
-      article.innerHTML = `
-          <img src="assets/images/${photographer.portrait}" alt="Photo de profil de ${photographer.name}" class="profile_image">
-          <h2>${photographer.name}</h2>
-          <p class="location">${photographer.city}, ${photographer.country}</p>
-          <p class="tagline">${photographer.tagline}</p>
-          <p class="price">${photographer.price}€/jour</p>
-        `;
-      return article;
-    },
-  };
-}
-
-// Fonction pour afficher les données des photographes
-export function displayPhotographers(photographers) {
-  const photographersSection = document.querySelector(".photographer_section");
-  photographersSection.innerHTML = ""; // Clear existing content
   photographers.forEach((photographer) => {
-    const photographerModel = photographerTemplate(photographer);
-    const userCardDOM = photographerModel.getUserCardDOM();
-    photographersSection.appendChild(userCardDOM);
+    const card = document.createElement("div");
+    card.classList.add("photographer_card");
+
+    const profileImage = document.createElement("img");
+    profileImage.src = `assets/photographers/${photographer.portrait}`;
+    profileImage.alt = `Photo de profil de ${photographer.name}`;
+    profileImage.classList.add("profile_image");
+
+    const name = document.createElement("h2");
+    name.textContent = photographer.name;
+
+    const location = document.createElement("p");
+    location.textContent = `${photographer.city}, ${photographer.country}`;
+    location.classList.add("location");
+
+    const tagline = document.createElement("p");
+    tagline.textContent = photographer.tagline;
+    tagline.classList.add("tagline");
+
+    const price = document.createElement("p");
+    price.textContent = `${photographer.price}€/jour`;
+    price.classList.add("price");
+
+    card.appendChild(profileImage);
+    card.appendChild(name);
+    card.appendChild(location);
+    card.appendChild(tagline);
+    card.appendChild(price);
+
+    photographerSection.appendChild(card);
   });
 }
