@@ -1,13 +1,13 @@
 //form for contact//
 export function callModal() {
   const modal = document.createElement("contact_modal");
-  modal.styledisplay = "block";
+  modal.style.display = "block";
   modal.classList.add("modal");
 }
 
 export function closeModal() {
-  const modal = document.querySelector("contact_modal");
-  modal.styledisplay = "none";
+  const modal = document.getElementById("contact_modal");
+  modal.style.display = "none";
 }
 
 export function closeModalByEsc() {

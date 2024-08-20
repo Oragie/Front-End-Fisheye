@@ -3,6 +3,9 @@ export function PhotographerCard(photographer) {
   const card = document.createElement("div");
   card.classList.add("photographer_card");
 
+  const photographerPage = document.createElement("a");
+  photographerPage.href = `photographer.html?id=${photographer.id}`;
+
   const profileImage = document.createElement("img");
   profileImage.src = `assets/photographers/${photographer.portrait}`;
   profileImage.alt = `Photo de profil de ${photographer.name}`;
@@ -28,6 +31,7 @@ export function PhotographerCard(photographer) {
   card.appendChild(location);
   card.appendChild(tagline);
   card.appendChild(price);
+  card.appendChild(photographerPage);
 
   return card;
 }

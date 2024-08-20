@@ -8,7 +8,14 @@ export function photographerTemplate() {
       const card = PhotographerCard(photographer);
       photographerSection.appendChild(card); // à sortir pour reutiliser
     });
+    // Function to get the photographer ID from the URL
+    function getPhotographerIdFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("id");
+    }
   }
 
   return { createPhotographersGallery };
+  return { getPhotographerIdFromURL };
 }
+5;
