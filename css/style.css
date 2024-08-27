@@ -31,6 +31,10 @@ h1 {
     margin-left: 100px;
 }
 
+main a {
+  text-decoration: none;
+  color: black;
+}
 
 /* Styles pour les cartes des photographes */
 .photographer_section {

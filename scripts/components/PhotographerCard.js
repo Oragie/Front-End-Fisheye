@@ -3,8 +3,9 @@ export function PhotographerCard(photographer) {
   const card = document.createElement("div");
   card.classList.add("photographer_card");
 
-  const photographerPage = document.createElement("a");
-  photographerPage.href = `photographer.html?id=${photographer.id}`;
+  // Create a link to the photographer's page
+  const photographerLink = document.createElement("a");
+  photographerLink.href = `photographer.html?id=${photographer.id}`;
 
   const profileImage = document.createElement("img");
   profileImage.src = `assets/photographers/${photographer.portrait}`;
@@ -26,12 +27,12 @@ export function PhotographerCard(photographer) {
   price.textContent = `${photographer.price}€/jour`;
   price.classList.add("price");
 
-  card.appendChild(profileImage);
-  card.appendChild(name);
-  card.appendChild(location);
-  card.appendChild(tagline);
-  card.appendChild(price);
-  card.appendChild(photographerPage);
+  card.appendChild(photographerLink); //link to photographer page
+  photographerLink.appendChild(profileImage);
+  photographerLink.appendChild(name);
+  photographerLink.appendChild(location);
+  photographerLink.appendChild(tagline);
+  photographerLink.appendChild(price);
 
   return card;
 }
