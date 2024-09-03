@@ -1,6 +1,6 @@
 // function to build layout to the photographer gallery page
-export function PhotographerContent(photographer) {
-  const photographeHeader = document.getElementById("photograph-header");
+export function PhotographHeader(photographer) {
+  const photographerHeader = document.getElementById("photograph-header");
 
   const textContent = document.createElement("div");
   textContent.classList.add("text_content");
@@ -23,16 +23,12 @@ export function PhotographerContent(photographer) {
   profileImage.alt = `Photo de profil de ${photographer.name}`;
   profileImage.classList.add("profile_image");
 
-  // const price = document.createElement("p");
-  // price.textContent = `${photographer.price}€/jour`;
-  // price.classList.add("price");
-
-  photographeHeader.appendChild(textContent);
+  photographerHeader.appendChild(textContent);
   textContent.appendChild(name);
   textContent.appendChild(location);
   textContent.appendChild(tagline);
-  photographeHeader.appendChild(contactMe);
-  photographeHeader.appendChild(profileImage);
+  photographerHeader.appendChild(contactMe);
+  photographerHeader.appendChild(profileImage);
 
-  return photographeHeader;
+  return photographerHeader;
 }
