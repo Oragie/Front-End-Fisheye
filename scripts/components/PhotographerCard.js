@@ -34,5 +34,6 @@ export function PhotographerCard(photographer) {
   photographerLink.appendChild(tagline);
   photographerLink.appendChild(price);
 
+  card.addEventListener;
   return card;
 }
