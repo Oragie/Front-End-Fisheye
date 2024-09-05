@@ -12,9 +12,9 @@ async function init() {
   // const photographerId = urlParams.get("id");
   const photographers = await getPhotographers(); //byid
 
-  const { createPhotoGalleryContent } = photographerPageTemplate();
+  const { createPhotographersAvatarContent } = photographerPageTemplate();
 
-  createPhotoGalleryContent(photographers);
+  createPhotographersAvatarContent(photographers);
 }
 
-document.addEventListener("DOMContentLoaded", init);
+init();

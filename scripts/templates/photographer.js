@@ -1,13 +1,26 @@
 import { PhotographerCard } from "../components/PhotographerCard.js";
+import { Header } from "../components/Header.js";
 
 export function photographerTemplate() {
-  function createPhotographersGallery(photographers) {
-    const photographerSection = document.querySelector(".photographer_section");
+  function createHomePage(photographers) {
+    const main = document.querySelector("#main");
+
+    const header = Header();
+    main.appendChild(header);
+
+    const photographersAvatars = createPhotographersAvatar(photographers);
+    main.appendChild(photographersAvatars);
+  }
+
+  function createPhotographersAvatar(photographers) {
+    const photographerSection = document.createElement("div");
+    photographerSection.classList.add("photographer_section");
     photographerSection.innerHTML = ""; // Clear any existing content
     photographers.forEach((photographer) => {
       const card = PhotographerCard(photographer);
       photographerSection.appendChild(card); // à sortir pour reutiliser
     });
+    return photographerSection;
   }
   function createPhotoGalleryContent(photographers) {
     // const urlParams = new URLSearchParams(window.location.search);
@@ -40,5 +53,9 @@ export function photographerTemplate() {
   //   });
   // }
 
-  return { createPhotographersGallery };
+  return {
+    createPhotoGalleryContent,
+    createPhotographersAvatar,
+    createHomePage,
+  };
 }

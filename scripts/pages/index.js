@@ -5,9 +5,9 @@ import { photographerTemplate } from "../templates/photographer.js";
 // function to call api and template for index.html
 async function init() {
   const photographers = await getPhotographers();
-  const { createPhotographersGallery } = photographerTemplate();
+  const { createHomePage } = photographerTemplate();
 
-  createPhotographersGallery(photographers);
+  createHomePage(photographers);
 }
 
-document.addEventListener("DOMContentLoaded", init);
+init();

@@ -1,4 +1,4 @@
-// function to build layout to the photographer gallery page
+// function to build layout to the photographer Profil
 export function PhotographHeader(photographer) {
   const photographerHeader = document.createElement("photograph-header");
 
@@ -32,5 +32,6 @@ export function PhotographHeader(photographer) {
   photographerHeader.appendChild(contactMe);
   photographerHeader.appendChild(profileImage);
 
+  photographerHeader.addEventListener;
   return photographerHeader;
 }

@@ -26,5 +26,6 @@ export function SortBy(title, likes, date) {
   sortByList.appendChild(dateLi);
   sortByList.appendChild(titleLi);
 
+  sortBy.addEventListener;
   return sortBy;
 }

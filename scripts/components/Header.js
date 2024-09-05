@@ -13,5 +13,6 @@ export function Header() {
   header.appendChild(homepageLink);
   homepageLink.appendChild(logo);
 
+  header.addEventListener;
   return header;
 }

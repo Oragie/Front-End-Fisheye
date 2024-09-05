@@ -2,10 +2,11 @@ import { getMediaPhotographerById } from "../api/api.js";
 import { getPhotographers } from "../api/api.js";
 
 // function to build layout to the gallery photographer
-export function PhotographGallery(photographer) {
+export async function PhotographGallery(photographer) {
   const gallery = document.createElement("div");
   gallery.classList.add("gallery");
 
+  const photographerMedia = await getMediaPhotographerById(photographer.id);
   // Itérer sur chaque média du tableau de l'api
   photographerMedia.forEach((id) => {
     // Créer une nouvelle section pour chaque média
@@ -24,7 +25,7 @@ export function PhotographGallery(photographer) {
       imgMedia.alt = `${media.title}`;
       imgMedia.classList.add(`${media.id}`);
 
-      galleryCard.appendChild(imgMedia);
+      mediaLink.appendChild(imgMedia);
     } else if (media.type === "video") {
       const videoMedia = document.createElement("video");
       videoMedia.title = `${media.title}`;
@@ -34,15 +35,34 @@ export function PhotographGallery(photographer) {
       source.type = `${media.video.format}`;
 
       videoMedia.appendChild(source);
-      galleryCard.appendChild(videoMedia);
+      mediaLink.appendChild(videoMedia);
     }
 
-    const description = document.createElement("section")
-    description.classList.add("description")
+    const description = document.createElement("section");
+    description.classList.add("description");
 
     const mediaTitle = document.createElement("h3");
-    mediaTitle.textContent = `${media.title}`;
+    mediaTitle.textContent = media.title;
 
-    const
+    const mediaLikes = document.createElement("p");
+    mediaLikes.classList.add("like_box");
+
+    const mediaLikesCount = document.createElement("p");
+    mediaLikesCount.textContent = media.likes;
+    mediaLikesCount.classList.add("likes_count");
+
+    const likeIcon = document.createElement("i");
+    likeIcon.classList.add("fa-solid fa-heart full--heart");
+
+    gallery.appendChild(galleryCard);
+    galleryCard.appendChild(mediaLink);
+    galleryCard.appendChild(description);
+    description.appendChild(mediaTitle);
+    description.appendChild(mediaLikes);
+    mediaLikes.appendChild(mediaLikesCount);
+    mediaLikes.appendChild(likeIcon);
   });
+
+  gallery.addEventListener;
+  return gallery;
 }

@@ -28,7 +28,7 @@ export async function getMediaPhotographerById(id) {
     for (let i = 0; i < data.media.length; i++) {
       const element = data.media[i];
       if (element.photographerId === id) {
-        photographerMedia.push(element); // Ajout de l'élément au
+        photographerMedia.push(element); // Ajout de l'élément au tableau
       }
     }
 
