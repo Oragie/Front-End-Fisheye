@@ -34,6 +34,20 @@ export function PhotographerCard(photographer) {
   photographerLink.appendChild(tagline);
   photographerLink.appendChild(price);
 
-  card.addEventListener;
   return card;
+
+  card.addEventListener("DOMContentLoaded", (event) => {
+    // Fonction pour rediriger vers la page photographer.html avec l'ID du photographe
+    async function redirectToPhotographerPage() {
+      // Remplacez ceci par l'ID réel du photographe
+      const photographerId = await photographer.id;
+      const url = `photographer.html?id=${photographer.id}`;
+      window.location.href = url;
+    }
+
+    // Ajoutez un événement click à l'élément avec l'ID "a"
+    if (photographerLink) {
+      photographerLink.addEventListener("click", redirectToPhotographerPage);
+    }
+  });
 }

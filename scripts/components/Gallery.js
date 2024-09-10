@@ -2,16 +2,16 @@ import { getMediaPhotographerById } from "../api/api.js";
 import { getPhotographers } from "../api/api.js";
 
 // function to build layout to the gallery photographer
-export async function PhotographGallery(photographer) {
+export async function PhotographGallery(media) {
   const gallery = document.createElement("div");
   gallery.classList.add("gallery");
 
   const photographerMedia = await getMediaPhotographerById(photographer.id);
   // Itérer sur chaque média du tableau de l'api
-  photographerMedia.forEach((id) => {
+  photographerMedia.forEach((media) => {
     // Créer une nouvelle section pour chaque média
     const galleryCard = document.createElement("div");
-    galleryCard.classList.add(`gallery_card_${id}`);
+    galleryCard.classList.add(`gallery_card_${media.id}`);
 
     const mediaLink = document.createElement("a");
     mediaLink.href = `assets/images/${photographer.name}/${

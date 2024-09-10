@@ -1,20 +1,33 @@
-// Utilisez `photographerId` pour récupérer et afficher les données du photographe
-
-import { PhotographerContent } from "../components/PhotographerContent.js";
 import { getPhotographers } from "../api/api.js";
-import { photographerPageTemplate } from "../templates/galleryPhotographer.js";
+import { getMediaPhotographerById } from "../api/api.js";
 
-// import { photographerPageTemplate } from "../templates/photographer.js";
+import { photographerTemplate } from "../templates/photographer.js";
 
-// function to call api and template for index.html
+// fonction to "get" photographer ID de l'URL
+function getPhotographerIdFromUrl() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get("id");
+}
+
+// fonction pour appeler l'api et le template pour photographer.html
 async function init() {
-  // const urlParams = new URLSearchParams(window.location.search);
-  // const photographerId = urlParams.get("id");
-  const photographers = await getPhotographers(); //byid
+  const photographerId = getPhotographerIdFromUrl();
 
-  const { createPhotographersAvatarContent } = photographerPageTemplate();
+  if (photographerId) {
+    const photographers = await getPhotographers();
+    const photographer = photographers.find((p) => p.id == photographerId);
 
-  createPhotographersAvatarContent(photographers);
+    if (photographer) {
+      const mediaById = await getMediaPhotographerById(photographerId);
+      const { createPhotographerPage } = photographerTemplate();
+
+      createPhotographerPage(photographer, mediaById);
+    } else {
+      console.error(`aucun photographer avec cette id: ${photographerId}`);
+    }
+  } else {
+    console.error("aucun photographer ID dans l'URL");
+  }
 }
 
 init();

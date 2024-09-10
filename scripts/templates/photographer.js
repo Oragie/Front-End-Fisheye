@@ -1,6 +1,10 @@
 import { PhotographerCard } from "../components/PhotographerCard.js";
 import { Header } from "../components/Header.js";
 
+import { PhotographHeader } from "../components/PhotographHeader.js";
+import { SortBy } from "../components/SortBy.js";
+import { PhotographGallery } from "../components/Gallery.js";
+
 export function photographerTemplate() {
   function createHomePage(photographers) {
     const main = document.querySelector("#main");
@@ -8,17 +12,16 @@ export function photographerTemplate() {
     const header = Header();
     main.appendChild(header);
 
-    const photographersAvatars = createPhotographersAvatar(photographers);
+    const photographersAvatars = createBrowsePhotographers(photographers);
     main.appendChild(photographersAvatars);
   }
-
-  function createPhotographersAvatar(photographers) {
+  function createBrowsePhotographers(photographers) {
     const photographerSection = document.createElement("div");
     photographerSection.classList.add("photographer_section");
-    photographerSection.innerHTML = ""; // Clear any existing content
+
     photographers.forEach((photographer) => {
       const card = PhotographerCard(photographer);
-      photographerSection.appendChild(card); // à sortir pour reutiliser
+      photographerSection.appendChild(card);
     });
     return photographerSection;
   }
@@ -32,6 +35,24 @@ export function photographerTemplate() {
       const photographeHeader = PhotographerContent(photographer);
       photographerHeader.appendChild(photographeHeader);
     });
+  }
+  function createPhotographerPage(photographer, media) {
+    const main = document.querySelector("#main");
+
+    const header = Header();
+    main.appendChild(header);
+
+    const photographerHeader = PhotographHeader(photographer);
+    main.appendChild(photographerHeader);
+
+    const sortBy = SortBy(media);
+    main.appendChild(sortBy);
+
+    const gallery = PhotographGalleryGallery(media);
+    main.appendChild(gallery);
+
+    const likesFooter = LikesFooterPrice(media);
+    main.appendChild(likesFooter);
   }
   // //form for contact//
   // export function callModal() {
@@ -55,7 +76,8 @@ export function photographerTemplate() {
 
   return {
     createPhotoGalleryContent,
-    createPhotographersAvatar,
+    createPhotographersAvatar: createBrowsePhotographers,
     createHomePage,
+    createPhotographerPage,
   };
 }
