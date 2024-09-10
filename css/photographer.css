@@ -1,16 +1,10 @@
 @import url("style.css");
 
-:root {
-  --primary-color:#901C1C;
-  --secondary-color: #D3573C; 
-  --tageline-color: #525252;
-  --price-color: #757575;
 
-}
 
 /* Header logo */
 header {
-  margin-bottom: 0;
+  margin-bottom: 1rem;
 }
 h1{
   opacity: 0%;
@@ -31,13 +25,6 @@ h1{
 
 .text_content {
   margin: 40px;
-}
-
-h2{
-  color: var(--secondary-color);
-    font-size: 2rem;
-  font-weight: bold;
-  text-align: left;
 }
 
 .location{

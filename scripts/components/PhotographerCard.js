@@ -6,6 +6,7 @@ export function PhotographerCard(photographer) {
   // Create a link to the photographer's page
   const photographerLink = document.createElement("a");
   photographerLink.href = `photographer.html?id=${photographer.id}`;
+  photographerLink.ariaLabel = photographer.name;
 
   const profileImage = document.createElement("img");
   profileImage.src = `assets/photographers/${photographer.portrait}`;
