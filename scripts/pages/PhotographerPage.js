@@ -18,10 +18,10 @@ async function init() {
     const photographer = photographers.find((p) => p.id == photographerId);
 
     if (photographer) {
-      const mediaById = await getMediaPhotographerById(photographerId);
+      const photographerMedia = await getMediaPhotographerById(photographerId);
       const { createPhotographerPage } = photographerTemplate();
 
-      createPhotographerPage(photographer, mediaById);
+      createPhotographerPage(photographer, photographerMedia);
     } else {
       console.error(`aucun photographer avec cette id: ${photographerId}`);
     }

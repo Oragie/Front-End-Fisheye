@@ -8,27 +8,42 @@
 }
 
 body {
+  min-height: 100vh;
     font-family: "DM Sans", sans-serif;
     margin: 0;
+    padding: 0;
+    overflow-x: hidden;;
 }
 
 
 header {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 90px;
+    margin: 40px 80px 60px 80px;
 }
 
-h1 {
-    color: var(--primary-color);
-    margin-right: 100px;
+@media screen and (max-width: 768px) {
+  .header {
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px
+  }
 }
 
 .logo {
+  width: 200px;
     height: 50px;
-    margin-left: 100px;
+   
+}
+
+h1 {
+  opacity: 100%;
+  font-size: 36px;
+  text-align: center;
+  color: var(--primary-color)
 }
 
 main a {
@@ -38,17 +53,27 @@ main a {
 
 /* Styles pour les cartes des photographes */
 .photographer_section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    flex-grow: 1;
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  gap: 35px;
   }
+  @media screen and (max-width: 768px) {
+    .main__cards-container {
+        display: grid;
+        grid-template-rows: repeat(6, 1fr);
+        grid-template-columns: repeat(1, 1fr);
+        gap: 35px;
+    }}
   
   .photographer_card {
-    width: 30%;
-    margin-bottom: 20px;
-    text-align: center;
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0px;
   }
   
   .profile_image {
@@ -57,6 +82,13 @@ main a {
     height: 200px;
     object-fit: cover;
     overflow-clip-margin: unset;
+  }
+
+  .card_text-container {
+    justify-content: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
   
   /* Style pour le nom */

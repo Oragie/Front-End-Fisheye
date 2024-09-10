@@ -1,6 +1,7 @@
 // function to build layout to the photographer Profil
 export function PhotographHeader(photographer) {
-  const photographerHeader = document.createElement("photograph-header");
+  const photographerHeader = document.createElement("div");
+  photographerHeader.classList.add("photograph-header");
 
   const profilPhotographer = document.createElement("div");
   profilPhotographer.classList.add("text_content");

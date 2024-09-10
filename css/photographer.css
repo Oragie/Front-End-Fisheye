@@ -1,13 +1,57 @@
 @import url("style.css");
 
-#contact_modal {
-    display: none;
+:root {
+  --primary-color:#901C1C;
+  --secondary-color: #D3573C; 
+  --tageline-color: #525252;
+  --price-color: #757575;
+
 }
 
+/* Header logo */
+header {
+  margin-bottom: 0;
+}
+h1{
+  opacity: 0%;
+}
+
+/* photograph banner */
 .photograph-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     background-color: #FAFAFA;
-    height: 300px;
-    margin: 0 100px;
+   margin-left: 80px;
+   margin-right: 80px;
+    border-radius: 5px 0px 0px 0px;
+    margin-top: 0;    
+}
+
+.text_content {
+  margin: 40px;
+}
+
+h2{
+  color: var(--secondary-color);
+    font-size: 2rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+.location{
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  text-align: left;
+}
+
+.tagline {
+  color: var(--tageline-color);
+  font-size: 1rem;
+
+  text-align: left;
+
 }
 
 .contact_button {
@@ -22,6 +66,64 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+.profile_image {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  overflow-clip-margin: unset;
+  margin: 40px;
+}
+
+/* sortBy */
+
+
+
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 80px; /* Espacement gauche et droite */
+  }
+
+  .image-container img {
+    width: calc((100% - 160px) / 3); /* Largeur des images en fonction du nombre de colonnes et de l'espacement */
+    margin-bottom: 20px; /* Espacement entre les lignes */
+  }
+
+  .likes-heart{
+    font-family: "Font Awesome 6 Free";
+}
+
+.likes-footer {
+    position: fixed; /*fixed*/
+    bottom: -10px; 
+    right: 20px; 
+    width: 376px;
+    height: 70px;
+    background: #DB8876;
+    border-radius: 5px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px; 
+  }
+  
+  .likes-container,
+  .price-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .likes-count {
+    margin-right: 5px;
+  }
+  
+  .likes-heart {
+    color: rgb(255, 0, 0); /* Couleur du coeur */
+  }
+  
 
 .modal {
     border-radius: 5px;
@@ -76,3 +178,7 @@ form input {
     border: none;
     border-radius: 5px;
 }
+
+
+#contact_modal {
+  display: none;

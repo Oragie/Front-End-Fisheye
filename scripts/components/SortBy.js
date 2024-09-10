@@ -11,14 +11,17 @@ export function SortBy(title, likes, date) {
   const popularityLi = document.createElement("li");
   popularityLi.classList.add("popularityLi");
   popularityLi.alt = `Tri par popularité`;
+  popularityLi.textContent = "Popularité";
 
   const dateLi = document.createElement("li");
-  dateLi.classList.add("popularityLi");
+  dateLi.classList.add("dateLi");
   dateLi.alt = `Tri par date`;
+  dateLi.textContent = "Date";
 
   const titleLi = document.createElement("li");
-  titleLi.classList.add("popularityLi");
+  titleLi.classList.add("titleLi");
   titleLi.alt = `Tri par titre`;
+  titleLi.textContent = "Titre";
 
   sortBy.appendChild(textH2);
   sortBy.appendChild(sortByList);

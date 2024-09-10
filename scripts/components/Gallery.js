@@ -1,12 +1,7 @@
-import { getMediaPhotographerById } from "../api/api.js";
-import { getPhotographers } from "../api/api.js";
-
 // function to build layout to the gallery photographer
-export async function PhotographGallery(media) {
+export function PhotographGallery(photographer, photographerMedia) {
   const gallery = document.createElement("div");
-  gallery.classList.add("gallery");
-
-  const photographerMedia = await getMediaPhotographerById(photographer.id);
+  gallery.classList.add("image-container");
   // Itérer sur chaque média du tableau de l'api
   photographerMedia.forEach((media) => {
     // Créer une nouvelle section pour chaque média
@@ -14,30 +9,32 @@ export async function PhotographGallery(media) {
     galleryCard.classList.add(`gallery_card_${media.id}`);
 
     const mediaLink = document.createElement("a");
-    mediaLink.href = `assets/images/${photographer.name}/${
-      imgMedia || videoMedia
-    }`;
 
     // Vérifiez le type de média pour décider de créer une image ou une vidéo
-    if (media.type === "image") {
+    if (media.image) {
       const imgMedia = document.createElement("img");
       imgMedia.src = `assets/images/${photographer.name}/${media.image}`;
       imgMedia.alt = `${media.title}`;
       imgMedia.classList.add(`${media.id}`);
 
       mediaLink.appendChild(imgMedia);
-    } else if (media.type === "video") {
+    } else if (media.video) {
       const videoMedia = document.createElement("video");
       videoMedia.title = `${media.title}`;
       videoMedia.classList.add("${media.id}");
       const source = document.createElement("source");
       source.src = `assets/images/${photographer.name}/${media.video}`;
-      source.type = `${media.video.format}`;
+      source.type = `video/mp4`;
 
       videoMedia.appendChild(source);
       mediaLink.appendChild(videoMedia);
     }
 
+    mediaLink.href = `assets/images/${photographer.name}/${
+      media.image || media.video
+    }`;
+
+    // section pour la description et les likes
     const description = document.createElement("section");
     description.classList.add("description");
 
@@ -52,7 +49,7 @@ export async function PhotographGallery(media) {
     mediaLikesCount.classList.add("likes_count");
 
     const likeIcon = document.createElement("i");
-    likeIcon.classList.add("fa-solid fa-heart full--heart");
+    likeIcon.classList.add("fa-solid", "fa-heart", "full--heart");
 
     gallery.appendChild(galleryCard);
     galleryCard.appendChild(mediaLink);
@@ -63,6 +60,5 @@ export async function PhotographGallery(media) {
     mediaLikes.appendChild(likeIcon);
   });
 
-  gallery.addEventListener;
   return gallery;
 }

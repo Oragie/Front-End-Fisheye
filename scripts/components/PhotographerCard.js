@@ -15,6 +15,9 @@ export function PhotographerCard(photographer) {
   const name = document.createElement("h2");
   name.textContent = photographer.name;
 
+  const cardTextContainer = document.createElement("div");
+  cardTextContainer.classList.add("card_text-container");
+
   const location = document.createElement("p");
   location.textContent = `${photographer.city}, ${photographer.country}`;
   location.classList.add("location");
@@ -30,9 +33,10 @@ export function PhotographerCard(photographer) {
   card.appendChild(photographerLink); //link to photographer page
   photographerLink.appendChild(profileImage);
   photographerLink.appendChild(name);
-  photographerLink.appendChild(location);
-  photographerLink.appendChild(tagline);
-  photographerLink.appendChild(price);
+  card.appendChild(cardTextContainer);
+  cardTextContainer.appendChild(location);
+  cardTextContainer.appendChild(tagline);
+  cardTextContainer.appendChild(price);
 
   return card;
 
