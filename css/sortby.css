@@ -1,0 +1,50 @@
+/* Style général du conteneur de tri */
+.sortBy {
+    position: relative;
+    width: 200px;
+    margin: 1rem 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Style de l'élément sélectionné */
+  .dropdown-selected {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  /* Style de la liste déroulante (cachée par défaut) */
+  .dropdown-menu {
+    position: absolute;
+    top: 50px; /* Positionner sous l'élément sélectionné */
+    left: 0;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 1;
+  }
+  
+  /* Lorsque la classe "show" est active, la liste déroulante s'affiche */
+  .dropdown-menu.show {
+    max-height: 200px; /* Hauteur maximale de la liste déroulante */
+    overflow-y: auto;
+  }
+  
+  /* Style des éléments de la liste */
+  .dropdown-menu li {
+    padding: 10px;
+    list-style-type: none;
+    cursor: pointer;
+  }
+  
+  /* Style lors du survol d'un élément de la liste */
+  .dropdown-menu li:hover {
+    background-color: #f1f1f1;
+  }
+  

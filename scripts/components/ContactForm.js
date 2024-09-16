@@ -5,9 +5,6 @@ export function ContactForm(photographer) {
   const formWrapper = document.createElement("div");
   formWrapper.classList.add("form_wrapper");
 
-  const formWrapperContent = document.createElement("div");
-  formWrapperContent.classList.add("form_wrapper_content");
-
   const titleForm = document.createElement("div");
   titleForm.classList.add("title_form");
 
@@ -81,11 +78,10 @@ export function ContactForm(photographer) {
   submitButton.textContent = "Envoyer";
 
   //mise en forme
-  formWrapper.appendChild(formWrapperContent);
-  formWrapperContent.appendChild(titleForm);
+  formWrapper.appendChild(titleForm);
   titleForm.appendChild(name);
   titleForm.appendChild(modalClose);
-  formWrapperContent.appendChild(form);
+  formWrapper.appendChild(form);
   form.appendChild(formDataFirst);
   formDataFirst.appendChild(labelFirst);
   formDataFirst.appendChild(inputFirst);

@@ -16,6 +16,8 @@
 
 /* Modal form */
 .form_wrapper {
+    display: none;
+    flex-direction: column;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -30,6 +32,8 @@
     width: 40%;
     height: 90vh;
 }
+
+
 
 .btn-close{
     display: flex;
@@ -64,8 +68,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    height: 20%;
-    margin-bottom: 2rem; 
+    margin-bottom: 15px;
 }
 
 .title_form h2{

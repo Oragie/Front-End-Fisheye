@@ -1,10 +1,11 @@
 import { Header } from "../components/Header.js";
 import { LikesFooterPrice } from "../components/LikesFooterPrice.js";
 import { PhotographHeader } from "../components/PhotographHeader.js";
-import { SortBy } from "../components/SortBy.js";
+import { SortBy } from "../components/ListSort.js";
 import { PhotographGallery } from "../components/Gallery.js";
 import { BrowsePhotographers } from "../components/BrowsePhotographers.js";
 import { ContactForm } from "../components/ContactForm.js";
+import { LightBox } from "../components/LightBox.js";
 
 export function photographerTemplate() {
   function createHomePage(photographers) {
@@ -34,6 +35,9 @@ export function photographerTemplate() {
 
     const gallery = PhotographGallery(photographer, photographerMedia);
     main.appendChild(gallery);
+
+    // const lightBox = LightBox(photographer, photographerMedia);
+    // main.appendChild(lightBox);
 
     const likesFooter = LikesFooterPrice(photographer, photographerMedia);
     main.appendChild(likesFooter);
