@@ -7,14 +7,16 @@ export function ContactForm(photographer) {
 
   const formWrapperContent = document.createElement("div");
   formWrapperContent.classList.add("form_wrapper_content");
-  formWrapperContent.textContent = "Contactez-moi";
+
+  const titleForm = document.createElement("div");
+  titleForm.classList.add("title_form");
+
+  const name = document.createElement("h2");
+  name.innerHTML = `Contactez-moi<br>${photographer.name}`;
 
   const modalClose = document.createElement("span");
   modalClose.classList.add("btn-close");
   modalClose.textContent = "X";
-
-  const name = document.createElement("h2");
-  name.textContent = "je pige rien";
 
   // Sélection du formulaire
   const form = document.createElement("form");
@@ -64,11 +66,10 @@ export function ContactForm(photographer) {
   formDataMessage.classList.add("form_data");
 
   const labelMessage = document.createElement("label");
-  labelMessage.setAttribute("for", "last");
+  labelMessage.setAttribute("for", "message");
   labelMessage.textContent = "Message";
 
-  const inputMessage = document.createElement("input");
-  inputMessage.type = "text";
+  const inputMessage = document.createElement("textarea");
   inputMessage.id = "message";
   inputMessage.name = "message";
   inputMessage.className = "text-control";
@@ -81,8 +82,9 @@ export function ContactForm(photographer) {
 
   //mise en forme
   formWrapper.appendChild(formWrapperContent);
-  formWrapperContent.appendChild(modalClose);
-  formWrapperContent.appendChild(name);
+  formWrapperContent.appendChild(titleForm);
+  titleForm.appendChild(name);
+  titleForm.appendChild(modalClose);
   formWrapperContent.appendChild(form);
   form.appendChild(formDataFirst);
   formDataFirst.appendChild(labelFirst);

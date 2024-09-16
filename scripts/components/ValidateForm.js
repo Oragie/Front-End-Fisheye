@@ -1,5 +1,5 @@
 // Fonction de validation du formulaire
-export function validate(event, type) {
+export function ValidateForm(event, type) {
   event.preventDefault();
   if (!type)
     throw new Error("Type is required, choose between 'submit' or 'input'"); // Vérification du type d'événement
@@ -29,6 +29,27 @@ export function validate(event, type) {
   const emailField = elements["email"];
   const messageField = elements["message"];
 
+  // Show error message
+  const setErrorMessage = (element, message) => {
+    element.parentElement.setAttribute("data-error-visible", "true");
+    element.parentElement.setAttribute("data-error", message);
+  };
+  // Hide error message
+  const hideErrorMessage = (element) => {
+    element.parentElement.removeAttribute("data-error-visible");
+    element.parentElement.removeAttribute("data-error");
+  };
+
+  // Check input value
+  function checkInputValue(regex, element, message) {
+    if (!regex.test(element.value)) {
+      setErrorMessage(element, message);
+      return false;
+    }
+    hideErrorMessage(element);
+    return true;
+  }
+
   // Validation des différents champs
 
   const isMessageValid = checkInputValue(
@@ -56,37 +77,7 @@ export function validate(event, type) {
     isLastNameValid &&
     isFirstNameValid
   ) {
-    formWrapper.style.display = "none"; // Fermeture de la modale de formulaire
-    modalSuccess.style.display = "flex"; // Affichage de la modale de succès
-    form.reset(); // Réinitialisation du formulaire
+    return true; //formulaire valide
   }
+  return false; //formulaire non valide
 }
-
-// Ajout des écouteurs d'événements pour la soumission et l'entrée du formulaire
-form.addEventListener("submit", (event) => validate(event, "submit"));
-form.addEventListener("input", (event) => validate(event, "input"));
-
-// Fermeture de la modale de succès
-document
-  .querySelector(".modal_content button")
-  .addEventListener("click", () => (modalSuccess.style.display = "none"));
-
-//If ok new modal on screen to said Ok it's send !
-const modalSuccess = document.createElement("div");
-modalSuccess.className = "modal_success";
-
-const modalContent = document.createElement("div");
-modalContent.className = "modal_content";
-
-const h2 = document.createElement("h2");
-h2.textContent = "Merci c'est envoyé";
-
-const closeButton = document.createElement("button");
-closeButton.className = "btn";
-closeButton.type = "button";
-closeButton.setAttribute("aria-label", "close modal");
-closeButton.textContent = "Fermer";
-
-modalContent.appendChild(h2);
-modalContent.appendChild(closeButton);
-modalSuccess.appendChild(modalContent);
