@@ -4,6 +4,7 @@ import { PhotographHeader } from "../components/PhotographHeader.js";
 import { SortBy } from "../components/SortBy.js";
 import { PhotographGallery } from "../components/Gallery.js";
 import { BrowsePhotographers } from "../components/BrowsePhotographers.js";
+import { ContactForm } from "../components/ContactForm.js";
 
 export function photographerTemplate() {
   function createHomePage(photographers) {
@@ -24,6 +25,9 @@ export function photographerTemplate() {
 
     const photographerHeader = PhotographHeader(photographer);
     main.appendChild(photographerHeader);
+
+    const formWrapper = ContactForm(photographer);
+    photographerHeader.appendChild(formWrapper);
 
     const sortBy = SortBy(photographerMedia);
     main.appendChild(sortBy);
