@@ -1,48 +1,73 @@
-// ListSort.js - Composant pour trier la liste
 export function SortBy() {
   const sortBy = document.createElement("div");
   sortBy.classList.add("sortBy");
 
-  const selectedOption = document.createElement("div");
-  selectedOption.classList.add("dropdown-selected");
-  selectedOption.textContent = "Trier par"; // Affiche "Trier par" par défaut
+  const textH2 = document.createElement("h3");
+  textH2.textContent = "Trier par";
 
-  const dropdownMenu = document.createElement("ul");
-  dropdownMenu.classList.add("dropdown-menu");
+  const dropdownWrapper = document.createElement("div");
+  dropdownWrapper.classList.add("sortByDropdown");
 
-  const popularityLi = document.createElement("li");
-  popularityLi.classList.add("popularityLi");
-  popularityLi.textContent = "Popularité";
+  const dropdownButton = document.createElement("button");
+  let currentSelection = "Popularité"; // Valeur initiale
+  dropdownButton.textContent = currentSelection;
 
-  const dateLi = document.createElement("li");
-  dateLi.classList.add("dateLi");
-  dateLi.textContent = "Date";
+  const dropdownContent = document.createElement("ul");
+  dropdownContent.classList.add("dropdownContent");
 
-  const titleLi = document.createElement("li");
-  titleLi.classList.add("titleLi");
-  titleLi.textContent = "Titre";
+  const options = ["Popularité", "Date", "Titre"];
 
-  // Ajouter les éléments à la liste déroulante
-  dropdownMenu.appendChild(popularityLi);
-  dropdownMenu.appendChild(dateLi);
-  dropdownMenu.appendChild(titleLi);
+  // Fonction pour mettre à jour la liste d'options sans répéter l'option sélectionnée
+  function updateDropdownContent() {
+    dropdownContent.innerHTML = ""; // Réinitialiser le contenu
 
-  // Ajouter les éléments au conteneur principal
-  sortBy.appendChild(selectedOption);
-  sortBy.appendChild(dropdownMenu);
+    // Ajouter un séparateur avant le premier élément visible dans le menu déroulant
+    if (options.length > 1) {
+      const firstSeparator = document.createElement("div");
+      firstSeparator.classList.add("dropdownSeparator");
+      dropdownContent.appendChild(firstSeparator);
+    }
 
-  // Ajouter un événement de clic pour ouvrir/fermer la liste déroulante
-  selectedOption.addEventListener("click", () => {
-    dropdownMenu.classList.toggle("show");
-  });
+    options.forEach((option, index) => {
+      if (option !== currentSelection) {
+        // Ne pas afficher l'option sélectionnée
+        const li = document.createElement("li");
+        li.textContent = option;
 
-  // Ajouter un événement de clic pour sélectionner un élément
-  dropdownMenu.querySelectorAll("li").forEach((item) => {
-    item.addEventListener("click", () => {
-      selectedOption.textContent = item.textContent; // Met à jour l'option sélectionnée
-      dropdownMenu.classList.remove("show"); // Ferme la liste déroulante
+        li.addEventListener("click", () => {
+          currentSelection = option; // Met à jour la sélection actuelle
+          dropdownButton.textContent = currentSelection; // Met à jour le texte du bouton
+          dropdownWrapper.classList.remove("active"); // Ferme le menu déroulant
+        });
+
+        dropdownContent.appendChild(li);
+
+        // Ajouter un trait blanc de séparation sauf après le dernier élément visible
+        if (
+          index < options.length - 2 ||
+          (index === options.length - 2 &&
+            options[options.length - 1] !== currentSelection)
+        ) {
+          const separator = document.createElement("div");
+          separator.classList.add("dropdownSeparator");
+          dropdownContent.appendChild(separator);
+        }
+      }
     });
+  }
+
+  // Initialiser le contenu du menu déroulant
+  updateDropdownContent();
+
+  dropdownButton.addEventListener("click", () => {
+    dropdownWrapper.classList.toggle("active"); // Ouvre/Ferme le menu
+    updateDropdownContent(); // Met à jour le menu déroulant chaque fois qu'on clique dessus
   });
+
+  dropdownWrapper.appendChild(dropdownButton);
+  dropdownWrapper.appendChild(dropdownContent);
+  sortBy.appendChild(textH2);
+  sortBy.appendChild(dropdownWrapper);
 
   return sortBy;
 }
