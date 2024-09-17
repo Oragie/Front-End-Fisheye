@@ -1,5 +1,5 @@
 // Fonction de validation du formulaire
-export function ValidateForm(event, type) {
+export function validateForm(event, type) {
   event.preventDefault();
   if (!type)
     throw new Error("Type is required, choose between 'submit' or 'input'"); // Vérification du type d'événement

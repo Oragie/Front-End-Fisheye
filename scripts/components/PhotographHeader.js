@@ -23,6 +23,13 @@ export function PhotographHeader(photographer) {
   contactMe.classList.add("contact_button");
   contactMe.textContent = "Contactez-moi";
 
+  //ouverture du modal
+  contactMe.addEventListener("click", () => {
+    const formWrapper = document.querySelector(".form_wrapper");
+    formWrapper.style.display = "flex";
+  });
+  //addvevent
+
   const profileImage = document.createElement("img");
   profileImage.src = `assets/photographers/${photographer.portrait}`;
   profileImage.alt = `Photo de profil de ${photographer.name}`;

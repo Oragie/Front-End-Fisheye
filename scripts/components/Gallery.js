@@ -38,7 +38,7 @@ export function PhotographGallery(photographer, photographerMedia) {
     const description = document.createElement("section");
     description.classList.add("description");
 
-    const mediaTitle = document.createElement("h3");
+    const mediaTitle = document.createElement("h4");
     mediaTitle.textContent = media.title;
 
     const mediaLikes = document.createElement("p");
@@ -48,8 +48,19 @@ export function PhotographGallery(photographer, photographerMedia) {
     mediaLikesCount.textContent = media.likes;
     mediaLikesCount.classList.add("likes_count");
 
-    const likeIcon = document.createElement("i");
+    const likeIcon = document.createElement("i"); //addbutton
     likeIcon.classList.add("fa-solid", "fa-heart", "full--heart");
+
+    // Ajouter l'événement de clic pour le bouton like
+
+    let hasLiked = false; // Pour éviter les multiples clics
+    likeIcon.addEventListener("click", () => {
+      if (!hasLiked) {
+        media.likes++; // Augmenter le nombre de likes pour ce média
+        mediaLikesCount.textContent = media.likes; // Mettre à jour l'affichage
+        hasLiked = true; // Empêcher les likes supplémentaires pour cet item
+      }
+    });
 
     gallery.appendChild(galleryCard);
     galleryCard.appendChild(mediaLink);

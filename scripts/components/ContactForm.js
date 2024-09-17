@@ -1,3 +1,4 @@
+import { validateForm } from "../utils/validateForm.js";
 //Function for the contact modal
 
 export function ContactForm(photographer) {
@@ -11,9 +12,17 @@ export function ContactForm(photographer) {
   const name = document.createElement("h2");
   name.innerHTML = `Contactez-moi<br>${photographer.name}`;
 
-  const modalClose = document.createElement("span");
-  modalClose.classList.add("btn-close");
-  modalClose.textContent = "X";
+  const closeButton = document.createElement("button");
+  closeButton.classList.add("btn-close");
+  closeButton.textContent = "X";
+
+  // Fermer le formulaire en cliquant sur le "X"
+  closeButton.addEventListener("click", () => {
+    const formWrapper = document.querySelector(".form_wrapper");
+    const form = formWrapper.querySelector("form");
+    formWrapper.style.display = "none"; // Masque le formulaire
+    form.reset(); //reinitialisation du formulaire
+  });
 
   // Sélection du formulaire
   const form = document.createElement("form");
@@ -77,10 +86,26 @@ export function ContactForm(photographer) {
   submitButton.value = "Submit Form";
   submitButton.textContent = "Envoyer";
 
+  // Validation et soumission du formulaire
+  form.addEventListener("submit", (event) => {
+    event.preventDefault(); // Empêche l'envoi par défaut
+    const isValid = validateForm(event, "submit");
+
+    if (isValid) {
+      console.log("Le formulaire est valide et est soumis !");
+      formWrapper.style.display = "none"; // Fermer le formulaire après soumission réussie
+      form.reset(); // Réinitialiser le formulaire après soumission
+    } else {
+      console.error("Le formulaire contient des erreurs.");
+    }
+  });
+  // // Validation en temps réel lors de la saisie
+  // form.addEventListener("input", (event) => validateForm(event, "input"));
+
   //mise en forme
   formWrapper.appendChild(titleForm);
   titleForm.appendChild(name);
-  titleForm.appendChild(modalClose);
+  titleForm.appendChild(closeButton);
   formWrapper.appendChild(form);
   form.appendChild(formDataFirst);
   formDataFirst.appendChild(labelFirst);

@@ -5,13 +5,13 @@
   display: flex;
   align-items: center;
   font-size: 1.2rem;
+  font-weight: 700;
   color: var(--default-text-color);
   margin: 15px 0 0 80px;
 }
 
 .sortBy h3 {
   margin-right: 10px;
-  font-weight: normal;
 }
 
 /* Style général pour le panneau déroulant */
@@ -23,7 +23,6 @@
 .sortByDropdown button {
   background-color: var(--primary-color);
   color: var(--basic-color);
-  font-size: 1rem;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -31,8 +30,15 @@
   width: 170px; /* Largeur du bouton */
   height: 70px;
   font-size: 1.2rem;
+  font-weight: 700;
+  text-align: left;
   margin-left: 15px;
   border-radius: var(--box-border-radius);
+}
+
+.sortByDropdown button:hover {
+  background-color:var(--third-color); /* Change la couleur au hover */
+  color: var(--default-text-color);
 }
 
 /* Quand le menu est actif, changer le border-radius */
@@ -43,8 +49,8 @@
 
 .sortByDropdown button::after {
   content: "˅"; /* Flèche */
-  font-weight: bold;
   font-size: 1rem;
+  font-weight: 400;
   position: absolute;
   right: 15px;
   top: 50%;
@@ -58,7 +64,7 @@
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   width: 170px; /* Largeur du bouton */
-  font-size: 1.2rem;
+  
   margin-left: 15px;
 }
 
@@ -72,14 +78,16 @@
   color:var(--basic-color);
   padding: 10px 20px;
   cursor: pointer;
-  text-align: center;
+  font-size: 1.2rem;
+  text-align: left;
   list-style: none;
-  margin-top: 0.8rem;
-  margin-bottom: 0.8rem;
+  padding-top: 1.4rem;
+  padding-bottom: 1.4rem;
 }
 
 .dropdownContent li:hover {
   background-color:var(--third-color); /* Change la couleur au hover */
+  color: var(--default-text-color);
 }
 
 /* Séparateur blanc centré */
@@ -93,7 +101,7 @@
 /* Triangle flèche en haut quand le menu est ouvert */
 .sortByDropdown.active button::after {
   content: "˄"; /* Icône flèche vers le haut */
-  font-weight: bold;
+  font-weight: 400;
   transform: scaleX(1.5) translateY(-50%);
   
 }
