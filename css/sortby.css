@@ -1,3 +1,5 @@
+@import url(style.css);
+
 /* Style de la boîte de tri */
 .sortBy {
   display: flex;
@@ -19,31 +21,37 @@
 }
 
 .sortByDropdown button {
-  background-color: var(--secondary-color);
-  color: white;
-  font-size: 16px;
+  background-color: var(--primary-color);
+  color: var(--basic-color);
+  font-size: 1rem;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
   position: relative;
-  width: 200px; /* Largeur du bouton */
+  width: 170px; /* Largeur du bouton */
+  font-size: 1.2rem;
+  margin-left: 15px;
 }
 
 .sortByDropdown button::after {
-  content: "⌃"; /* Flèche */
+  content: "˅"; /* Flèche */
+  font-weight: bold;
+  font-size: 1rem;
   position: absolute;
   right: 15px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: scaleX(1.5) translateY(-50%);
 }
 
 .dropdownContent {
   display: none;
   position: absolute;
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  width: 100%;
+  width: 170px; /* Largeur du bouton */
+  font-size: 1.2rem;
+  margin-left: 15px;
 }
 
 .sortByDropdown.active .dropdownContent {
@@ -51,7 +59,7 @@
 }
 
 .dropdownContent li {
-  color: white;
+  color:var(--basic-color);
   padding: 10px 20px;
   cursor: pointer;
   text-align: center;
@@ -59,7 +67,7 @@
 }
 
 .dropdownContent li:hover {
-  background-color: #e6735e; /* Change la couleur au hover */
+  background-color:var(--third-color); /* Change la couleur au hover */
 }
 
 /* Séparateur blanc centré */
@@ -67,10 +75,13 @@
   height: 2px;
   width: 60%;
   margin: 0 auto; /* Centrer le trait */
-  background-color: white;
+  background-color: var(--basic-color);
 }
 
 /* Triangle flèche en haut quand ouvert */
 .sortByDropdown.active button::after {
-  content: "⮝"; /* Icône flèche vers le haut */
+  content: "˄"; /* Icône flèche vers le haut */
+  font-weight: bold;
+  transform: scaleX(1.5) translateY(-50%);
+  
 }

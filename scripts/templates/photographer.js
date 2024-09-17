@@ -1,7 +1,7 @@
 import { Header } from "../components/Header.js";
 import { LikesFooterPrice } from "../components/LikesFooterPrice.js";
 import { PhotographHeader } from "../components/PhotographHeader.js";
-import { SortBy } from "../components/ListSort.js";
+import { SortBy } from "../components/SortBy.js";
 import { PhotographGallery } from "../components/Gallery.js";
 import { BrowsePhotographers } from "../components/BrowsePhotographers.js";
 import { ContactForm } from "../components/ContactForm.js";
@@ -30,14 +30,27 @@ export function photographerTemplate() {
     const formWrapper = ContactForm(photographer);
     photographerHeader.appendChild(formWrapper);
 
-    const sortBy = SortBy(photographerMedia);
+    //-----------------------------
+    // Fonction pour mettre à jour la galerie
+    const updateGallery = (sortedMedia) => {
+      const existingGallery = document.querySelector(".image-container");
+      if (existingGallery) {
+        console.log("Suppression de la galerie existante...");
+        existingGallery.remove(); // Supprime la galerie actuelle avant d'en créer une nouvelle
+      }
+
+      console.log("Création d'une nouvelle galerie avec les médias triés...");
+      const gallery = PhotographGallery(photographer, sortedMedia);
+      main.appendChild(gallery);
+    };
+
+    // Appel du composant SortBy en passant la fonction de mise à jour de la galerie
+    const sortBy = SortBy(photographerMedia, updateGallery);
     main.appendChild(sortBy);
 
-    const gallery = PhotographGallery(photographer, photographerMedia);
-    main.appendChild(gallery);
-
-    // const lightBox = LightBox(photographer, photographerMedia);
-    // main.appendChild(lightBox);
+    // Initialiser la galerie par défaut (non triée)
+    updateGallery(photographerMedia);
+    //-------------------------
 
     const likesFooter = LikesFooterPrice(photographer, photographerMedia);
     main.appendChild(likesFooter);
