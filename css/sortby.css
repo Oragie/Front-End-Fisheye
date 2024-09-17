@@ -29,9 +29,17 @@
   cursor: pointer;
   position: relative;
   width: 170px; /* Largeur du bouton */
+  height: 70px;
   font-size: 1.2rem;
   margin-left: 15px;
+  border-radius: var(--box-border-radius);
 }
+
+/* Quand le menu est actif, changer le border-radius */
+.sortByDropdown.active button {
+  border-radius: 5px 5px 0 0; /* Applique la forme spécifique au bouton */
+}
+
 
 .sortByDropdown button::after {
   content: "˅"; /* Flèche */
@@ -56,6 +64,8 @@
 
 .sortByDropdown.active .dropdownContent {
   display: block;
+  height: 140px;
+  border-radius: 0 0 var(--box-border-radius) var(--box-border-radius);
 }
 
 .dropdownContent li {
@@ -64,6 +74,8 @@
   cursor: pointer;
   text-align: center;
   list-style: none;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
 }
 
 .dropdownContent li:hover {
@@ -73,12 +85,12 @@
 /* Séparateur blanc centré */
 .dropdownSeparator {
   height: 2px;
-  width: 60%;
+  width: 80%;
   margin: 0 auto; /* Centrer le trait */
   background-color: var(--basic-color);
 }
 
-/* Triangle flèche en haut quand ouvert */
+/* Triangle flèche en haut quand le menu est ouvert */
 .sortByDropdown.active button::after {
   content: "˄"; /* Icône flèche vers le haut */
   font-weight: bold;
