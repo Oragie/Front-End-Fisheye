@@ -11,6 +11,7 @@ export function SortBy(photographerMedia, updateGallery) {
   const dropdownButton = document.createElement("button");
   let currentSelection = "Popularité"; // Valeur initiale
   dropdownButton.textContent = currentSelection;
+  dropdownButton.id = "selector";
 
   const dropdownContent = document.createElement("ul");
   dropdownContent.classList.add("dropdownContent");
@@ -49,10 +50,12 @@ export function SortBy(photographerMedia, updateGallery) {
     options.forEach((option, index) => {
       if (option !== currentSelection) {
         // Ne pas afficher l'option sélectionnée
-        const li = document.createElement("li");
-        li.textContent = option;
 
-        li.addEventListener("click", () => {
+        const buttonLi = document.createElement("button");
+        buttonLi.id = "buttonLi";
+        buttonLi.textContent = option;
+
+        buttonLi.addEventListener("click", () => {
           currentSelection = option; // Met à jour la sélection actuelle
           dropdownButton.textContent = currentSelection; // Met à jour le texte du bouton
           dropdownWrapper.classList.remove("active"); // Ferme le menu déroulant
@@ -63,7 +66,7 @@ export function SortBy(photographerMedia, updateGallery) {
           updateGallery(sortedMedia); // Mettre à jour la galerie
         });
 
-        dropdownContent.appendChild(li);
+        dropdownContent.appendChild(buttonLi);
 
         // Ajouter un trait blanc de séparation sauf après le dernier élément visible
         if (

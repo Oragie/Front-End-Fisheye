@@ -20,7 +20,7 @@
   display: inline-block;
 }
 
-.sortByDropdown button {
+.sortByDropdown #selector {
   background-color: var(--primary-color);
   color: var(--basic-color);
   border: none;
@@ -36,18 +36,28 @@
   border-radius: var(--box-border-radius);
 }
 
-.sortByDropdown button:hover {
+.sortByDropdown #selector:hover {
   background-color:var(--third-color); /* Change la couleur au hover */
   color: var(--default-text-color);
 }
 
 /* Quand le menu est actif, changer le border-radius */
-.sortByDropdown.active button {
+.sortByDropdown.active #selector {
   border-radius: 5px 5px 0 0; /* Applique la forme spécifique au bouton */
 }
 
+#buttonLi{
+  display: flex;
+  border: none;
+  width: 100%;
+  border-radius: 0 0 5px 5px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: left;
+  background-color: var(--primary-color);
+}
 
-.sortByDropdown button::after {
+.sortByDropdown #selector::after {
   content: "˅"; /* Flèche */
   font-size: 1rem;
   font-weight: 400;
@@ -74,7 +84,7 @@
   border-radius: 0 0 var(--box-border-radius) var(--box-border-radius);
 }
 
-.dropdownContent li {
+.dropdownContent #buttonLi {
   color:var(--basic-color);
   padding: 10px 20px;
   cursor: pointer;
@@ -85,9 +95,10 @@
   padding-bottom: 1.4rem;
 }
 
-.dropdownContent li:hover {
+.dropdownContent #buttonLi:hover {
   background-color:var(--third-color); /* Change la couleur au hover */
   color: var(--default-text-color);
+  border-radius: 0 5px;
 }
 
 /* Séparateur blanc centré */
@@ -99,7 +110,7 @@
 }
 
 /* Triangle flèche en haut quand le menu est ouvert */
-.sortByDropdown.active button::after {
+.sortByDropdown.active #selector::after {
   content: "˄"; /* Icône flèche vers le haut */
   font-weight: 400;
   transform: scaleX(1.5) translateY(-50%);

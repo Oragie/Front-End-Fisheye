@@ -8,7 +8,8 @@ export function PhotographGallery(photographer, photographerMedia) {
     const galleryCard = document.createElement("div");
     galleryCard.classList.add(`gallery_card_${media.id}`);
 
-    const mediaLink = document.createElement("a");
+    const mediaLink = document.createElement("button");
+    mediaLink.id = "gallery_mediaLink";
 
     // Vérifiez le type de média pour décider de créer une image ou une vidéo
     if (media.image) {
@@ -58,7 +59,23 @@ export function PhotographGallery(photographer, photographerMedia) {
       if (!hasLiked) {
         media.likes++; // Augmenter le nombre de likes pour ce média
         mediaLikesCount.textContent = media.likes; // Mettre à jour l'affichage
-        hasLiked = true; // Empêcher les likes supplémentaires pour cet item
+        hasLiked = true; // Marquer que le like a été ajouté
+
+        // ** Déclencher l'événement Custom avec l'ajout d'un like **
+        const likeEvent = new CustomEvent("mediaLiked", {
+          detail: { mediaLikes: 1 }, // Incrémenter de 1
+        });
+        document.dispatchEvent(likeEvent); // Déclencher l'événement
+      } else {
+        media.likes--; // Diminuer le nombre de likes pour ce média
+        mediaLikesCount.textContent = media.likes; // Mettre à jour l'affichage
+        hasLiked = false; // Marquer que le like a été retiré
+
+        // ** Déclencher l'événement Custom avec le retrait d'un like **
+        const unlikeEvent = new CustomEvent("mediaLiked", {
+          detail: { mediaLikes: -1 }, // Décrémenter de 1
+        });
+        document.dispatchEvent(unlikeEvent); // Déclencher l'événement
       }
     });
 

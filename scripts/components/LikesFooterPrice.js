@@ -43,5 +43,11 @@ export function LikesFooterPrice(photographer, photographerMedia) {
   footer.appendChild(likesContainer);
   footer.appendChild(priceContainer);
 
+  // ** Écouter le custom event pour mettre à jour le total des likes **
+  document.addEventListener("mediaLiked", (event) => {
+    totalLikes += event.detail.mediaLikes; // Ajouter ou retirer en fonction de la valeur (1 ou -1)
+    likesCount.textContent = totalLikes; // Mettre à jour l'affichage du total des likes
+  });
+
   return footer;
 }

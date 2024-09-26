@@ -84,6 +84,15 @@ h1{
   margin: 15px 80px 15px 80px; /* Espacement gauche et droite */
   }
 
+  #gallery_mediaLink{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    color: none;
+    border: none;
+    width: 100%;
+  }
+
   .image-container img {
     width: 100%;
     height: 300px;
