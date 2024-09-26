@@ -123,36 +123,3 @@ export function ContactForm(photographer) {
 
   return formWrapper;
 }
-
-// // Ouvrir/Fermer la modale de formulaire
-// const contactMeButton = document.getElementById("contact_button");
-// contactMeButton.forEach((btn) => {
-//   btn.addEventListener("click", () => (formWrapper.style.display = "flex"));
-// });
-// modalClose.addEventListener(
-//   "click",
-//   () => (formWrapper.style.display = "none")
-// );
-
-// //Check if form are ok
-// // Show error message
-// const setErrorMessage = (element, message) => {
-//   element.parentElement.setAttribute("data-error-visible", "true");
-//   element.parentElement.setAttribute("data-error", message);
-// };
-
-// // Hide error message
-// const hideErrorMessage = (element) => {
-//   element.parentElement.removeAttribute("data-error-visible");
-//   element.parentElement.removeAttribute("data-error");
-// };
-
-// // Check input value
-// function checkInputValue(regex, element, message) {
-//   if (!regex.test(element.value)) {
-//     setErrorMessage(element, message);
-//     return false;
-//   }
-//   hideErrorMessage(element);
-//   return true;
-// }

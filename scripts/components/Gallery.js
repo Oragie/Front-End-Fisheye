@@ -1,3 +1,5 @@
+import { LightBox } from "./LightBox.js";
+
 // function to build layout to the gallery photographer
 export function PhotographGallery(photographer, photographerMedia) {
   const gallery = document.createElement("div");
@@ -17,7 +19,6 @@ export function PhotographGallery(photographer, photographerMedia) {
       imgMedia.src = `assets/images/${photographer.name}/${media.image}`;
       imgMedia.alt = `${media.title}`;
       imgMedia.classList.add(`${media.id}`);
-
       mediaLink.appendChild(imgMedia);
     } else if (media.video) {
       const videoMedia = document.createElement("video");
@@ -49,13 +50,16 @@ export function PhotographGallery(photographer, photographerMedia) {
     mediaLikesCount.textContent = media.likes;
     mediaLikesCount.classList.add("likes_count");
 
+    const likeButton = document.createElement("button");
+    likeButton.id = "likeButton";
+
     const likeIcon = document.createElement("i"); //addbutton
     likeIcon.classList.add("fa-solid", "fa-heart", "full--heart");
 
     // Ajouter l'événement de clic pour le bouton like
 
     let hasLiked = false; // Pour éviter les multiples clics
-    likeIcon.addEventListener("click", () => {
+    likeButton.addEventListener("click", () => {
       if (!hasLiked) {
         media.likes++; // Augmenter le nombre de likes pour ce média
         mediaLikesCount.textContent = media.likes; // Mettre à jour l'affichage
@@ -79,13 +83,21 @@ export function PhotographGallery(photographer, photographerMedia) {
       }
     });
 
+    // ** Ajout de l'événement pour ouvrir la lightbox **
+    mediaLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      console.log("Lightbox clicked", media); // Pour voir si l'événement est bien déclenché
+      LightBox(photographer, media);
+    });
+
     gallery.appendChild(galleryCard);
     galleryCard.appendChild(mediaLink);
     galleryCard.appendChild(description);
     description.appendChild(mediaTitle);
     description.appendChild(mediaLikes);
     mediaLikes.appendChild(mediaLikesCount);
-    mediaLikes.appendChild(likeIcon);
+    mediaLikes.appendChild(likeButton);
+    likeButton.appendChild(likeIcon);
   });
 
   return gallery;

@@ -1,6 +1,7 @@
 @import url("style.css");
 @import url("form.css");
 @import url("sortby.css");
+@import url("lightbox.css");
 
 
 /* Header logo */
@@ -85,12 +86,13 @@ h1{
   }
 
   #gallery_mediaLink{
-    display: flex;
+    display: block;
     margin: 0;
     padding: 0;
     color: none;
     border: none;
     width: 100%;
+    cursor: pointer;
   }
 
   .image-container img {
@@ -130,6 +132,13 @@ h1{
     flex-direction: row;
     justify-content: space-between;
     gap: 5px;
+  }
+
+  #likeButton{
+    background-color: transparent;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
   }
 
   .fa-heart{
