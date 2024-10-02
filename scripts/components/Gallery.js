@@ -4,6 +4,7 @@ import { LightBox } from "./LightBox.js";
 export function PhotographGallery(photographer, photographerMedia) {
   const gallery = document.createElement("div");
   gallery.classList.add("image-container");
+
   // Itérer sur chaque média du tableau de l'api
   photographerMedia.forEach((media) => {
     // Créer une nouvelle section pour chaque média
@@ -12,6 +13,8 @@ export function PhotographGallery(photographer, photographerMedia) {
 
     const mediaLink = document.createElement("button");
     mediaLink.id = "gallery_mediaLink";
+
+    mediaLink.setAttribute("active-index", media.id);
 
     // Vérifiez le type de média pour décider de créer une image ou une vidéo
     if (media.image) {
@@ -53,10 +56,10 @@ export function PhotographGallery(photographer, photographerMedia) {
     const likeButton = document.createElement("button");
     likeButton.id = "likeButton";
 
-    const likeIcon = document.createElement("i"); //addbutton
+    const likeIcon = document.createElement("i");
     likeIcon.classList.add("fa-solid", "fa-heart", "full--heart");
 
-    // Ajouter l'événement de clic pour le bouton like
+    //** */ Ajouter l'événement de clic pour le bouton like
 
     let hasLiked = false; // Pour éviter les multiples clics
     likeButton.addEventListener("click", () => {
@@ -82,12 +85,12 @@ export function PhotographGallery(photographer, photographerMedia) {
         document.dispatchEvent(unlikeEvent); // Déclencher l'événement
       }
     });
-
     // ** Ajout de l'événement pour ouvrir la lightbox **
     mediaLink.addEventListener("click", (event) => {
-      event.preventDefault();
-      console.log("Lightbox clicked", media); // Pour voir si l'événement est bien déclenché
-      LightBox(photographer, media);
+      const activeIndex = event.currentTarget.getAttribute("active-index");
+      const lightbox = LightBox(photographer, photographerMedia, activeIndex);
+      lightbox.classList.remove("hidden"); // Make the lightbox visible
+      console.log(lightbox.classList);
     });
 
     gallery.appendChild(galleryCard);

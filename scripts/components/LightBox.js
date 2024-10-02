@@ -1,9 +1,19 @@
-export function LightBox(photographer, media) {
+export function LightBox(photographer, media, activeIndex) {
+  console.log({ activeIndex });
+
   const lightbox = document.createElement("div");
-  lightbox.classList.add("lightbox");
+  lightbox.classList.add("hidden"); // Ajout de la classe "hidden"
+  lightbox.id = "lightbox";
+
+  const lightboxNav = document.createElement("section");
+  lightboxNav.classList.add("lightbox_nav");
+
+  const mediaBox = document.createElement("div");
+  mediaBox.classList.add("media-box");
 
   const lightboxContent = document.createElement("div");
   lightboxContent.classList.add("lightbox-content");
+  lightboxContent.id = "lightbox-content";
 
   // Bouton pour fermer la lightbox
   const closeButton = document.createElement("button");
@@ -13,10 +23,88 @@ export function LightBox(photographer, media) {
     lightbox.remove(); // Fermer la lightbox en la supprimant du DOM
   });
 
-  // Vérifier si c'est une image ou une vidéo à afficher
+  // Ajouter la légende de l'image ou de la vidéo
+  const lightboxTitle = document.createElement("h4");
+  lightboxTitle.textContent = media.title;
+  lightboxTitle.id = "lightbox_title";
+
+  const prevButton = document.createElement("button");
+  prevButton.classList.add("prev-btn");
+  prevButton.id = "prev-btn";
+  prevButton.textContent = "<";
+
+  const nextButton = document.createElement("button");
+  nextButton.classList.add("next-btn");
+  nextButton.id = "next-btn";
+  nextButton.textContent = ">";
+
+  //** */ ---------------------------------/
+  // Remplacez la condition de vérification de activeIndex par le bon format
+  if (activeIndex) {
+    // Utiliser une boucle for pour trouver l'objet média correspondant à activeIndex
+    let currentMediaIndex = -1; // Utilisez -1 par défaut pour vérifier si trouvé
+    for (let i = 0; i < media.length; i++) {
+      // Convertir activeIndex en nombre si nécessaire
+      if (media[i].id === parseInt(activeIndex)) {
+        // Vérifiez le type ici
+        currentMediaIndex = media[i]; // Conservez l'objet média
+        break; // On arrête la boucle une fois qu'on a trouvé l'élément
+      }
+    }
+
+    // Appel initial pour afficher le média correspondant à activeIndex
+    if (currentMediaIndex) {
+      // Ici, utilisez l'objet actuel pour mettre à jour le contenu
+      updateLightboxContent(photographer, currentMediaIndex);
+    } else {
+      console.error("Média introuvable pour l'ID :", activeIndex);
+      return;
+    }
+  }
+
+  //**----------------------------- */
+
+  // ** Gestion des boutons Prev/Next ** maintenant que la lightbox est créée
+  let currentIndex = media.findIndex(
+    (item) => item.id === parseInt(activeIndex)
+  ); // Trouver l'index
+
+  prevButton.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + media.length) % media.length; // Gérer le retour circulaire
+    updateLightboxContent(photographer, media[currentIndex]);
+  });
+
+  nextButton.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % media.length; // Gérer le retour circulaire
+    updateLightboxContent(photographer, media[currentIndex]);
+  });
+
+  lightbox.appendChild(lightboxNav);
+  lightboxNav.appendChild(prevButton);
+  lightboxNav.appendChild(mediaBox);
+  mediaBox.appendChild(lightboxContent);
+  mediaBox.appendChild(lightboxTitle);
+  lightboxNav.appendChild(closeButton);
+  lightboxNav.appendChild(nextButton);
+
+  return lightbox;
+}
+
+/** fonction pour vider la lighbox et la remplir avec le nouveau contenu lorsqu'on navigue */
+function updateLightboxContent(photographer, media) {
+  const lightboxContent = document.getElementById("lightbox-content");
+  const lightboxTitle = document.getElementById("lightbox_title");
+
+  console.log({ photographer, media });
+
+  // Vider le contenu précédent
+  lightboxContent.innerHTML = "";
+
+  // Ajouter le nouveau média (image ou vidéo)
   if (media.image) {
     const img = document.createElement("img");
     img.src = `assets/images/${photographer.name}/${media.image}`;
+    console.log("Image source:", img.src); // Ajoutez cette ligne pour déboguer
     img.alt = media.title;
     lightboxContent.appendChild(img);
   } else if (media.video) {
@@ -24,20 +112,13 @@ export function LightBox(photographer, media) {
     video.controls = true;
     const source = document.createElement("source");
     source.src = `assets/images/${photographer.name}/${media.video}`;
+    console.log("Video source:", source.src); // Ajoutez cette ligne pour déboguer
     source.type = "video/mp4";
     video.appendChild(source);
     lightboxContent.appendChild(video);
   }
 
-  // Ajouter la légende de l'image ou de la vidéo
-  const title = document.createElement("h2");
-  title.textContent = media.title;
-  lightboxContent.appendChild(title);
-
-  lightbox.appendChild(lightboxContent);
-  lightbox.appendChild(closeButton);
-
-  document.body.appendChild(lightbox); // Ajouter la lightbox au body pour qu'elle soit visible
-
-  return lightbox;
+  // Mettre à jour le titre
+  lightboxTitle.textContent = media.title;
+  console.log("Lightbox Title:", lightboxTitle.textContent); // Vérifiez ici
 }
