@@ -44,6 +44,13 @@ export function SortBy(photographerMedia, updateGallery) {
   function updateDropdownContent() {
     dropdownContent.innerHTML = ""; // Réinitialiser le contenu
 
+    // Ajouter un séparateur avant le premier élément visible dans le menu déroulant
+    if (options.length > 1) {
+      const firstSeparator = document.createElement("div");
+      firstSeparator.classList.add("dropdownSeparator");
+      dropdownContent.appendChild(firstSeparator);
+    }
+
     options.forEach((option) => {
       if (option !== currentSelection) {
         // Créer un bouton pour chaque option

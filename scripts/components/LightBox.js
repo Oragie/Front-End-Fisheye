@@ -20,6 +20,7 @@ export function LightBox(photographer, media, activeIndex) {
   const closeButton = document.createElement("button");
   closeButton.classList.add("lightbox-close");
   closeButton.textContent = "X";
+  closeButton.setAttribute("aria-label", `Close dialog`);
 
   /**==================> A Check */
   closeButton.addEventListener("click", () => {
@@ -43,11 +44,13 @@ export function LightBox(photographer, media, activeIndex) {
   prevButton.classList.add("prev-btn");
   prevButton.id = "prev-btn";
   prevButton.textContent = "<";
+  prevButton.setAttribute("aria-label", `Previous media`);
 
   const nextButton = document.createElement("button");
   nextButton.classList.add("next-btn");
   nextButton.id = "next-btn";
   nextButton.textContent = ">";
+  prevButton.setAttribute("aria-label", `Next media`);
 
   //** */ ---------------------------------/
   // Remplacez la condition de vérification de activeIndex par le bon format

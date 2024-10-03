@@ -46,16 +46,28 @@
   border-radius: 5px 5px 0 0; /* Applique la forme spécifique au bouton */
 }
 
-#buttonLi{
+
+/* Styles pour les boutons dans le menu déroulant */
+.dropdownContent button {
   display: flex;
   border: none;
   width: 100%;
   border-radius: 0 0 5px 5px;
+  color: var(--basic-color);
   font-size: 1.2rem;
   font-weight: 700;
   text-align: left;
   background-color: var(--primary-color);
+  padding: 20px 20px; /* Assurez-vous que le padding est cohérent */
 }
+
+/* Styles pour le bouton dans le menu déroulant au hover */
+.dropdownContent button:hover {
+  background-color: var(--third-color); /* Change la couleur au hover */
+  color: var(--default-text-color);
+  border-radius: 0 5px;
+}
+
 
 .sortByDropdown #selector::after {
   content: "˅"; /* Flèche */
@@ -80,7 +92,7 @@
 
 .sortByDropdown.active .dropdownContent {
   display: block;
-  height: 140px;
+  height: 130px;
   border-radius: 0 0 var(--box-border-radius) var(--box-border-radius);
 }
 

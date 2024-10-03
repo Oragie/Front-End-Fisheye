@@ -5,7 +5,6 @@ import { SortBy } from "../components/SortBy.js";
 import { PhotographGallery } from "../components/Gallery.js";
 import { BrowsePhotographers } from "../components/BrowsePhotographers.js";
 import { ContactForm } from "../components/ContactForm.js";
-import { LightBox } from "../components/LightBox.js";
 
 export function photographerTemplate() {
   function createHomePage(photographers) {

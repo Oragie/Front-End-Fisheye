@@ -15,6 +15,7 @@ export function PhotographGallery(photographer, photographerMedia) {
 
     const mediaLink = document.createElement("button");
     mediaLink.id = "gallery_mediaLink";
+    mediaLink.setAttribute("aria-label", `${media.title}`); // Description dynamique
 
     mediaLink.setAttribute("active-index", media.id);
 
@@ -57,6 +58,10 @@ export function PhotographGallery(photographer, photographerMedia) {
 
     const likeButton = document.createElement("button");
     likeButton.id = "likeButton";
+    likeButton.setAttribute(
+      "aria-label",
+      `Likes icon with actual ${media.likes}`
+    ); // Description dynamique
 
     const likeIcon = document.createElement("i");
     likeIcon.classList.add("fa-solid", "fa-heart", "full--heart");
