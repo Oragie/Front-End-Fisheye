@@ -70,7 +70,6 @@ h1{
   width: 150px;
   height: 150px;
   object-fit: cover;
-  overflow-clip-margin: unset;
   margin: 40px;
 }
 

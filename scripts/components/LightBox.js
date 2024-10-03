@@ -87,7 +87,6 @@ export function LightBox(photographer, media, activeIndex) {
 
     // Vérifier si l'élément existe dans le DOM
     if (!lightboxContent) {
-      console.error("L'élément lightbox-content n'existe pas dans le DOM.");
       return;
     }
 

@@ -93,14 +93,12 @@ export function PhotographGallery(photographer, photographerMedia) {
       }
     });
 
-    let lastFocusedElement = document.activeElement; // Stocker l'élément qui a le focus actuellement
-
     // ** Ajout de l'événement pour ouvrir la lightbox **
     mediaLink.addEventListener("click", (event) => {
       const activeIndex = event.currentTarget.getAttribute("active-index");
 
       // Ouvrir la lightbox avec l'activeIndex actuel
-      LightBox(photographer, photographerMedia, activeIndex);
+      const lightbox = LightBox(photographer, photographerMedia, activeIndex);
 
       // Empêcher le comportement par défaut (si nécessaire)
       event.preventDefault();

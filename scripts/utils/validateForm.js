@@ -20,7 +20,7 @@ export function validateForm(event, type) {
 
   // Regex pour valider les entrées
   const regexName = /^([A-Za-z|\s]{2,15})?([-]{0,1})?([A-Za-z|\s]{2,15})$/;
-  const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  const regexEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
   const regexMessage = /^.{1,600}$/;
 
   // Récupération des champs du formulaire

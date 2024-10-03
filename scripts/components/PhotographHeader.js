@@ -1,5 +1,3 @@
-import { ContactForm } from "./ContactForm.js";
-
 // function to build layout to the photographer Profil
 export function PhotographHeader(photographer) {
   const photographerHeader = document.createElement("div");

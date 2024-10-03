@@ -15,6 +15,7 @@ export function ContactForm(photographer) {
   const closeButton = document.createElement("button");
   closeButton.classList.add("btn-close");
   closeButton.textContent = "X";
+  closeButton.setAttribute("aria-label", `Close contact form`);
 
   // Fermer le formulaire en cliquant sur le "X"
   closeButton.addEventListener("click", () => {
@@ -41,6 +42,7 @@ export function ContactForm(photographer) {
   inputFirst.id = "first";
   inputFirst.name = "first";
   inputFirst.className = "text-control";
+  inputFirst.setAttribute("aria-label", `First name`);
 
   const formDataLast = document.createElement("div");
   formDataLast.classList.add("form_data");
@@ -54,6 +56,7 @@ export function ContactForm(photographer) {
   inputLast.id = "last";
   inputLast.name = "last";
   inputLast.className = "text-control";
+  inputLast.setAttribute("aria-label", `Last name`);
 
   const formDataEmail = document.createElement("div");
   formDataEmail.classList.add("form_data");
@@ -67,6 +70,7 @@ export function ContactForm(photographer) {
   inputEmail.id = "email";
   inputEmail.name = "email";
   inputEmail.className = "text-control";
+  inputEmail.setAttribute("aria-label", `Email`);
 
   const formDataMessage = document.createElement("div");
   formDataMessage.classList.add("form_data");
