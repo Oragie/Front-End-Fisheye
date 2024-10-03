@@ -54,9 +54,6 @@ export function photographerTemplate() {
 
     const likesFooter = LikesFooterPrice(photographer, photographerMedia);
     main.appendChild(likesFooter);
-
-    const lightBox = LightBox(photographer, photographerMedia);
-    main.appendChild(lightBox);
   }
 
   return {

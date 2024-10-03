@@ -1,8 +1,9 @@
 export function LightBox(photographer, media, activeIndex) {
   console.log({ activeIndex });
+  const main = document.querySelector("main");
 
   const lightbox = document.createElement("div");
-  lightbox.classList.add("hidden"); // Ajout de la classe "hidden"
+  lightbox.classList.add("lightbox"); // Ajout de la classe "hidden"
   lightbox.id = "lightbox";
 
   const lightboxNav = document.createElement("section");
@@ -54,12 +55,55 @@ export function LightBox(photographer, media, activeIndex) {
 
     // Appel initial pour afficher le média correspondant à activeIndex
     if (currentMediaIndex) {
+      setTimeout(() => {
+        updateLightboxContent(photographer, media[currentIndex]);
+      }, 0);
       // Ici, utilisez l'objet actuel pour mettre à jour le contenu
       updateLightboxContent(photographer, currentMediaIndex);
     } else {
       console.error("Média introuvable pour l'ID :", activeIndex);
       return;
     }
+  }
+
+  //**----------------------------- */
+  /** fonction pour vider la lighbox et la remplir avec le nouveau contenu lorsqu'on navigue */
+  function updateLightboxContent(photographer, media) {
+    const lightboxContent = document.getElementById("lightbox-content");
+    const lightboxTitle = document.getElementById("lightbox_title");
+
+    // Vérifier si l'élément existe dans le DOM
+    if (!lightboxContent) {
+      console.error("L'élément lightbox-content n'existe pas dans le DOM.");
+      return;
+    }
+
+    console.log({ photographer, media });
+
+    // Vider le contenu précédent
+    lightboxContent.innerHTML = "";
+
+    // Ajouter le nouveau média (image ou vidéo)
+    if (media.image) {
+      const img = document.createElement("img");
+      img.src = `assets/images/${photographer.name}/${media.image}`;
+      console.log("Image source:", img.src); // Ajoutez cette ligne pour déboguer
+      img.alt = media.title;
+      lightboxContent.appendChild(img);
+    } else if (media.video) {
+      const video = document.createElement("video");
+      video.controls = true;
+      const source = document.createElement("source");
+      source.src = `assets/images/${photographer.name}/${media.video}`;
+      console.log("Video source:", source.src); // Ajoutez cette ligne pour déboguer
+      source.type = "video/mp4";
+      video.appendChild(source);
+      lightboxContent.appendChild(video);
+    }
+
+    // Mettre à jour le titre
+    lightboxTitle.textContent = media.title;
+    console.log("Lightbox Title:", lightboxTitle.textContent); // Vérifiez ici
   }
 
   //**----------------------------- */
@@ -79,6 +123,7 @@ export function LightBox(photographer, media, activeIndex) {
     updateLightboxContent(photographer, media[currentIndex]);
   });
 
+  main.appendChild(lightbox);
   lightbox.appendChild(lightboxNav);
   lightboxNav.appendChild(prevButton);
   lightboxNav.appendChild(mediaBox);
@@ -87,38 +132,10 @@ export function LightBox(photographer, media, activeIndex) {
   lightboxNav.appendChild(closeButton);
   lightboxNav.appendChild(nextButton);
 
+  console.log(
+    "Lightbox content ajouté au DOM :",
+    document.getElementById("lightbox-content")
+  );
+
   return lightbox;
-}
-
-/** fonction pour vider la lighbox et la remplir avec le nouveau contenu lorsqu'on navigue */
-function updateLightboxContent(photographer, media) {
-  const lightboxContent = document.getElementById("lightbox-content");
-  const lightboxTitle = document.getElementById("lightbox_title");
-
-  console.log({ photographer, media });
-
-  // Vider le contenu précédent
-  lightboxContent.innerHTML = "";
-
-  // Ajouter le nouveau média (image ou vidéo)
-  if (media.image) {
-    const img = document.createElement("img");
-    img.src = `assets/images/${photographer.name}/${media.image}`;
-    console.log("Image source:", img.src); // Ajoutez cette ligne pour déboguer
-    img.alt = media.title;
-    lightboxContent.appendChild(img);
-  } else if (media.video) {
-    const video = document.createElement("video");
-    video.controls = true;
-    const source = document.createElement("source");
-    source.src = `assets/images/${photographer.name}/${media.video}`;
-    console.log("Video source:", source.src); // Ajoutez cette ligne pour déboguer
-    source.type = "video/mp4";
-    video.appendChild(source);
-    lightboxContent.appendChild(video);
-  }
-
-  // Mettre à jour le titre
-  lightboxTitle.textContent = media.title;
-  console.log("Lightbox Title:", lightboxTitle.textContent); // Vérifiez ici
 }

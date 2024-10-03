@@ -1,7 +1,7 @@
 @import url(style.css);
 
 /* Style général de la lightbox */
-#lightbox {
+.lightbox {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,14 +11,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
-.hidden {
-  visibility: hidden; /* Montre la lightbox */
-  opacity: 0; /* Rend visible */
-  transition: opacity 0.3s ease;
-}
 
 /* Conteneur principal de la lightbox */
 .lightbox_nav {

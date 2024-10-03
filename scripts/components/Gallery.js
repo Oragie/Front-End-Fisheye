@@ -1,4 +1,5 @@
 import { LightBox } from "./LightBox.js";
+// import { updateLightboxContent } from "./LightBox.js";
 
 // function to build layout to the gallery photographer
 export function PhotographGallery(photographer, photographerMedia) {
@@ -88,9 +89,13 @@ export function PhotographGallery(photographer, photographerMedia) {
     // ** Ajout de l'événement pour ouvrir la lightbox **
     mediaLink.addEventListener("click", (event) => {
       const activeIndex = event.currentTarget.getAttribute("active-index");
-      const lightbox = LightBox(photographer, photographerMedia, activeIndex);
-      lightbox.classList.remove("hidden"); // Make the lightbox visible
-      console.log(lightbox.classList);
+      LightBox(photographer, photographerMedia, activeIndex);
+      console.log("class de la box :", lightbox.classList);
+
+      // // Attendre une petite période pour s'assurer que la lightbox est bien insérée dans le DOM
+      // setTimeout(() => {
+      //   updateLightboxContent(photographer, photographerMedia, activeIndex);
+      // }, 0);
     });
 
     gallery.appendChild(galleryCard);
