@@ -12,9 +12,13 @@ export function SortBy(photographerMedia, updateGallery) {
   let currentSelection = "Popularité"; // Valeur initiale
   dropdownButton.textContent = currentSelection;
   dropdownButton.id = "selector";
+  dropdownButton.setAttribute("aria-label", `Order by ${currentSelection}`); // Description dynamique
+  dropdownButton.setAttribute("aria-expanded", "false"); // Indiquer que le menu est initialement fermé
+  dropdownButton.setAttribute("aria-haspopup", "listbox"); // Indiquer qu'il s'agit d'un menu
 
   const dropdownContent = document.createElement("ul");
   dropdownContent.classList.add("dropdownContent");
+  dropdownContent.setAttribute("role", "listbox"); // Indiquer que c'est une liste d'options
 
   const options = ["Popularité", "Date", "Titre"];
 
@@ -40,40 +44,34 @@ export function SortBy(photographerMedia, updateGallery) {
   function updateDropdownContent() {
     dropdownContent.innerHTML = ""; // Réinitialiser le contenu
 
-    // Ajouter un séparateur avant le premier élément visible dans le menu déroulant
-    if (options.length > 1) {
-      const firstSeparator = document.createElement("div");
-      firstSeparator.classList.add("dropdownSeparator");
-      dropdownContent.appendChild(firstSeparator);
-    }
-
-    options.forEach((option, index) => {
+    options.forEach((option) => {
       if (option !== currentSelection) {
-        // Ne pas afficher l'option sélectionnée
-
+        // Créer un bouton pour chaque option
         const buttonLi = document.createElement("button");
-        buttonLi.id = "buttonLi";
+        buttonLi.id = `buttonLi-${option}`;
         buttonLi.textContent = option;
+        buttonLi.setAttribute("role", "option");
+        buttonLi.setAttribute("aria-label", `Trier par ${option}`); // Description pour les utilisateurs
 
         buttonLi.addEventListener("click", () => {
           currentSelection = option; // Met à jour la sélection actuelle
           dropdownButton.textContent = currentSelection; // Met à jour le texte du bouton
+          dropdownButton.setAttribute(
+            "aria-label",
+            `Trier par ${currentSelection}`
+          ); // Mettre à jour le label du bouton
           dropdownWrapper.classList.remove("active"); // Ferme le menu déroulant
+          dropdownButton.setAttribute("aria-expanded", "false"); // Indiquer que le menu est fermé
 
           // Trier et mettre à jour la galerie
           const sortedMedia = sortMedia();
-          console.log("Mise à jour de la galerie..."); // Vérification de la mise à jour
           updateGallery(sortedMedia); // Mettre à jour la galerie
         });
 
         dropdownContent.appendChild(buttonLi);
 
-        // Ajouter un trait blanc de séparation sauf après le dernier élément visible
-        if (
-          index < options.length - 2 ||
-          (index === options.length - 2 &&
-            options[options.length - 1] !== currentSelection)
-        ) {
+        // Ajouter un séparateur entre les options sauf après le dernier élément
+        if (option !== options[options.length - 1]) {
           const separator = document.createElement("div");
           separator.classList.add("dropdownSeparator");
           dropdownContent.appendChild(separator);

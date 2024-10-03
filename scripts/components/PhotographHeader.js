@@ -21,6 +21,7 @@ export function PhotographHeader(photographer) {
 
   const contactMe = document.createElement("button");
   contactMe.classList.add("contact_button");
+  contactMe.name = "contact Me";
   contactMe.textContent = "Contactez-moi";
 
   //ouverture du modal

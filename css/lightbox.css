@@ -53,13 +53,13 @@
   align-items: center;
   flex: 2; /* Prend tout l'espace central */
   text-align: center;
-  object-fit: contain;
+  
 }
 
-img,
-video {
+.media-box img,
+.media-box video {
     /* Remove object-fit */
-    object-fit: contain;
+    object-fit: cover;
     border-radius: var(--box-border-radius);
     max-width: 100%;
     max-height: 70vh; 

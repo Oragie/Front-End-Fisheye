@@ -20,9 +20,19 @@ export function LightBox(photographer, media, activeIndex) {
   const closeButton = document.createElement("button");
   closeButton.classList.add("lightbox-close");
   closeButton.textContent = "X";
+
+  /**==================> A Check */
   closeButton.addEventListener("click", () => {
     lightbox.remove(); // Fermer la lightbox en la supprimant du DOM
+    // Rediriger le focus sur l'élément correspondant à activeIndex
+    const mediaToFocus = document.querySelector(`.gallery_card_${activeIndex}`);
+    if (mediaToFocus) {
+      mediaToFocus.querySelector("button").focus(); // Mettre le focus sur le bouton du média correspondant
+    } else {
+      console.warn(`Impossible de trouver le média avec l'ID : ${activeIndex}`);
+    }
   });
+  /**=============== */
 
   // Ajouter la légende de l'image ou de la vidéo
   const lightboxTitle = document.createElement("h4");
@@ -123,6 +133,22 @@ export function LightBox(photographer, media, activeIndex) {
     updateLightboxContent(photographer, media[currentIndex]);
   });
 
+  // Gestion de la navigation avec les touches du clavier
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      // Navigation vers la gauche
+      currentIndex = (currentIndex - 1 + media.length) % media.length;
+      updateLightboxContent(photographer, media[currentIndex]);
+    } else if (event.key === "ArrowRight") {
+      // Navigation vers la droite
+      currentIndex = (currentIndex + 1) % media.length;
+      updateLightboxContent(photographer, media[currentIndex]);
+    } else if (event.key === "Escape") {
+      // Fermer la lightbox avec la touche "Escape"
+      closeButton.click();
+    }
+  });
+
   main.appendChild(lightbox);
   lightbox.appendChild(lightboxNav);
   lightboxNav.appendChild(prevButton);
@@ -131,6 +157,13 @@ export function LightBox(photographer, media, activeIndex) {
   mediaBox.appendChild(lightboxTitle);
   lightboxNav.appendChild(closeButton);
   lightboxNav.appendChild(nextButton);
+
+  // Une fois que tout est ajouté au DOM, mettez le focus sur un élément de la lightbox
+  if (document.body.contains(lightbox)) {
+    setTimeout(() => {
+      closeButton.focus(); // Assurez-vous que le bouton close est focalisé
+    }, 0);
+  }
 
   console.log(
     "Lightbox content ajouté au DOM :",
