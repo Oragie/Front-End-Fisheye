@@ -1,5 +1,5 @@
-import { getPhotographers } from "scripts/api/api.js";
-import { getMediaPhotographerById } from "scripts/api/api.js";
+import { getPhotographers } from "../api/api.js";
+import { getMediaPhotographerById } from "../api/api.js";
 
 import { photographerFactory } from "scripts/factory/photographer.js";
 
