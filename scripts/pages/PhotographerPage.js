@@ -1,7 +1,7 @@
 import { getPhotographers } from "../api/api.js";
 import { getMediaPhotographerById } from "../api/api.js";
 
-import { photographerTemplate } from "../templates/photographer.js";
+import { photographerFactory } from "../factory/photographer.js";
 
 // fonction to "get" photographer ID de l'URL
 function getPhotographerIdFromUrl() {
@@ -19,7 +19,7 @@ async function init() {
 
     if (photographer) {
       const photographerMedia = await getMediaPhotographerById(photographerId);
-      const { createPhotographerPage } = photographerTemplate();
+      const { createPhotographerPage } = photographerFactory();
 
       createPhotographerPage(photographer, photographerMedia);
     } else {

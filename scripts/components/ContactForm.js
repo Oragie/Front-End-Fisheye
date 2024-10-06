@@ -90,6 +90,13 @@ export function ContactForm(photographer) {
   submitButton.value = "Submit Form";
   submitButton.textContent = "Envoyer";
 
+  // Une fois que tout est ajouté au DOM, mettez le focus sur un élément de la lightbox
+  if (document.body.contains(formWrapper)) {
+    setTimeout(() => {
+      closeButton.focus(); // Assurez-vous que le bouton close est focalisé
+    }, 0);
+  }
+
   // Validation et soumission du formulaire
   form.addEventListener("submit", (event) => {
     event.preventDefault(); // Empêche l'envoi par défaut

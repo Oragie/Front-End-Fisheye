@@ -1,3 +1,5 @@
+import { trapFocus } from "../utils/focusTrapping.js";
+
 // function to build layout to the photographer Profil
 export function PhotographHeader(photographer) {
   const photographerHeader = document.createElement("div");
@@ -26,6 +28,8 @@ export function PhotographHeader(photographer) {
   contactMe.addEventListener("click", () => {
     const formWrapper = document.querySelector(".form_wrapper");
     formWrapper.style.display = "flex";
+
+    trapFocus(formWrapper);
   });
   //addvevent
 

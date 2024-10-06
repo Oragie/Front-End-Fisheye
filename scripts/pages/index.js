@@ -1,11 +1,11 @@
 import { getPhotographers } from "../api/api.js";
 
-import { photographerTemplate } from "../templates/photographer.js";
+import { photographerFactory } from "../factory/photographer.js";
 
 // function to call api and template for index.html
 async function init() {
   const photographers = await getPhotographers();
-  const { createHomePage } = photographerTemplate();
+  const { createHomePage } = photographerFactory();
 
   createHomePage(photographers);
 }

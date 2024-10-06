@@ -6,7 +6,7 @@ import { PhotographGallery } from "../components/Gallery.js";
 import { BrowsePhotographers } from "../components/BrowsePhotographers.js";
 import { ContactForm } from "../components/ContactForm.js";
 
-export function photographerTemplate() {
+export function photographerFactory() {
   function createHomePage(photographers) {
     const main = document.querySelector("#main");
 
