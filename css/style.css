@@ -24,6 +24,11 @@
     padding: 0;
    
 }
+body{
+  max-width: 1400px;
+  margin: auto;
+  padding: auto;
+}
 
 /* nos photographes titre */
   h1 {

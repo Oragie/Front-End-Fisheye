@@ -3,8 +3,15 @@
 @import url("sortby.css");
 @import url("lightbox.css");
 
+
+* {
+  box-sizing: border-box; /* Assure que le padding et les bordures sont inclus dans la largeur et la hauteur */
+  margin: 0;
+  padding: 0;
+}
+
 body{
-  max-width: 1240px;
+  max-width: 1400px;
   margin: auto;
   padding: auto;
 }
@@ -80,35 +87,32 @@ h1{
   width: 150px;
   height: 150px;
   object-fit: cover;
-  margin: 40px;
+  margin: 30px;
 }
 
 
 /* Carousel */
 .image-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colonnes de taille flexible */
-  gap: 25px; /* Espacement de 25px entre les éléments */
-  justify-content: space-between;
-  max-width: 1240px; /* Largeur maximale de 1240px */
+  display: flex; /* Utilise Flexbox */
+  flex-wrap: wrap; /* Permet aux éléments de s'enrouler */
+  justify-content: space-between; /* Distribution de l'espace entre les éléments */
+  max-width: 1240px;
+  gap: 25px;
   margin-left: 80px;
   margin-right: 80px;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
+
 
 article {
   display: flex;
   flex-direction: column;
-  width: 350px; /* Largeur fixe de chaque box */
-  height: 350px; /* Hauteur fixe de chaque box */
+  width: 350px; /* Largeur fixe */
+  height: 350px; /* Hauteur fixe */
+  margin: 0; /* Assure qu'il n'y a pas de marges */
 }
 
-/* Media queries pour ajuster la grille en fonction de la largeur de l'écran */
-@media (max-width: 1240px) {
-  .image-container {
-    grid-template-columns: repeat(2, 1fr); /* 2 colonnes lorsque la largeur est inférieure à 1240px */
-  }
-}
+
 
 @media (max-width: 760px) {
   .image-container {
