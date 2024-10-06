@@ -36,7 +36,7 @@ export function LightBox(photographer, media, activeIndex) {
   /**=============== */
 
   // Ajouter la légende de l'image ou de la vidéo
-  const lightboxTitle = document.createElement("h4");
+  const lightboxTitle = document.createElement("h5");
   lightboxTitle.textContent = media.title;
   lightboxTitle.id = "lightbox_title";
 

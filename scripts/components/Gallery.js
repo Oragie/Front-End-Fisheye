@@ -4,13 +4,13 @@ import { trapFocus } from "../utils/focusTrapping.js";
 
 // function to build layout to the gallery photographer
 export function PhotographGallery(photographer, photographerMedia) {
-  const gallery = document.createElement("div");
+  const gallery = document.createElement("section");
   gallery.classList.add("image-container");
 
   // Itérer sur chaque média du tableau de l'api
   photographerMedia.forEach((media) => {
     // Créer une nouvelle section pour chaque média
-    const galleryCard = document.createElement("div");
+    const galleryCard = document.createElement("article");
     galleryCard.classList.add(`gallery_card_${media.id}`);
 
     const mediaLink = document.createElement("button");

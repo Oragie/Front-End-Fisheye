@@ -3,7 +3,13 @@
 @import url("sortby.css");
 @import url("lightbox.css");
 
-
+main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  padding: auto;
+}
 /* Header logo */
 header {
   margin-bottom: 1rem;
@@ -14,16 +20,18 @@ h1{
 
 /* photograph banner */
 .photograph-header {
+  max-width: 1240px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: #FAFAFA;
+    background-color: var(--basic-color);
     margin-left: 80px;
     margin-right: 80px;
     border-radius:var(--box-border-radius);
     margin-top: 0;    
 }
+
 
   .text_content {
     display: flex;
@@ -31,6 +39,10 @@ h1{
     justify-content: left;
     margin: 40px;
     gap: 1rem;
+  }
+
+  h2{
+    text-align: left;
   }
 
   .location{
@@ -75,108 +87,128 @@ h1{
 
 
 /* Carousel */
-
 .image-container {
   display: grid;
-  grid-template-rows: repeat(1, 1fr);
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-  margin: 15px 80px 15px 80px; /* Espacement gauche et droite */
+  grid-template-columns: repeat(3, 1fr); /* 3 colonnes de taille flexible */
+  gap: 25px; /* Espacement de 25px entre les éléments */
+  justify-content: space-between;
+  max-width: 1240px; /* Largeur maximale de 1240px */
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-top: 2rem;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  width: 350px; /* Largeur fixe de chaque box */
+  height: 350px; /* Hauteur fixe de chaque box */
+}
+
+/* Media queries pour ajuster la grille en fonction de la largeur de l'écran */
+@media (max-width: 1240px) {
+  .image-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes lorsque la largeur est inférieure à 1240px */
   }
+}
 
-  #gallery_mediaLink{
-    display: block;
-    margin: 0;
-    padding: 0;
-    color: none;
-    border: none;
-    width: 100%;
-    cursor: pointer;
+@media (max-width: 760px) {
+  .image-container {
+    grid-template-columns: repeat(1, 1fr); /* 1 colonne lorsque la largeur est inférieure à 800px */
   }
+}
 
-  .image-container img {
-    width: 100%;
-    height: 300px;
-    -o-object-fit: cover;
-    object-fit: cover;
-    -o-object-position: center;
-    object-position: center;
-    border-radius: var(--box-border-radius); /* Espacement entre les lignes */
-  }
+#gallery_mediaLink {
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 90%; /* Hauteur de l'image ou de la vidéo */
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
 
-  .image-container video{
-    width: 100%;
-    height: 300px;
-    -o-object-fit: cover;
-    object-fit: cover;
-    -o-object-position: center;
-    object-position: center;
-    border-radius: var(--box-border-radius);
-  }
+.image-container img,
+.image-container video {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center;
+  object-position: center;
+  border-radius: var(--box-border-radius); /* Bordures arrondies */
+}
 
-  .description{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    color: var(--primary-color);
-  }
+/* Description */
+.description {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Aligne H4 et la boîte de like */
+  align-items: center;
+  padding: 5px 0;
+  color: var(--primary-color);
+}
 
-  h4{
-    font-size: 1rem;
-    font-weight: 400;
-  }
 
-  .like_box{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 5px;
-  }
+h4 {
+  font-size: 1rem;
+  font-weight: 400;
+}
 
-  #likeButton{
-    background-color: transparent;
-    border: none;
-    color: var(--primary-color);
-    cursor: pointer;
-  }
+.like_box {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Aligne les éléments horizontalement dans la like box */
+  gap: 5px;
+}
 
-  .fa-heart{
-    font-family: "Font Awesome 6 Free";
-     }
+#likeButton {
+  background-color: transparent;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+}
 
+.fa-heart {
+  font-family: "Font Awesome 6 Free";
+}
+
+/* Pied de page des likes */
 .likes-footer {
-    position: fixed; /*fixed*/
-    bottom: -5px; 
-    right: 20px; 
-    width: 376px;
-    height: 50px;
-    background: var(--third-color);
-    border-radius: 5px;
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 10px; 
-  }
-  
-  .likes-container,
-  .price-container {
-    display: flex;
-    align-items: center;
-    color: var(--default-text-color);
-    font-size: 1.2rem;
-    font-weight: 500;
-  }
+  position: fixed;
+  bottom: -5px;
+  right: 20px;
+  width: 376px;
+  height: 50px;
+  background: var(--third-color);
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
 
-  .price-container .price{
-    color: var(--default-text-color);
-    font-size: 1.2rem;
-    font-weight: 500;
-  }
-  
-  .likes-count {
-    margin-right: 5px;
-  }
-  
+.likes-container,
+.price-container {
+  display: flex;
+  align-items: center;
+  color: var(--default-text-color);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.price-container .price {
+  color: var(--default-text-color);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.likes-count {
+  margin-right: 5px;
+}
+
   
   
 
