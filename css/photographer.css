@@ -3,16 +3,14 @@
 @import url("sortby.css");
 @import url("lightbox.css");
 
-main{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+body{
+  max-width: 1240px;
   margin: auto;
   padding: auto;
 }
 /* Header logo */
 header {
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 h1{
   opacity: 0%; /*hidding h1*/
@@ -25,7 +23,7 @@ h1{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--basic-color);
+    background-color: var(--header-bg_color);
     margin-left: 80px;
     margin-right: 80px;
     border-radius:var(--box-border-radius);

@@ -6,6 +6,7 @@
   --tageline-color: #525252;
   --price-color: #757575;
   --basic-color: white ;
+  --header-bg_color: #FAFAFA;
   --default-text-color: black;
     --dialog-shadow-color: rgba(10, 10, 10, 0.3019607843);
     --input-bg-color--invalid: #430000;
@@ -100,7 +101,7 @@
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(3, 1fr);
     gap: 50px;
-    margin-top: 80px;
+    margin-top: 40px;
     }
     @media screen and (max-width: 768px) {
         .photographer_section{
