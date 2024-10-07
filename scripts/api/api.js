@@ -1,6 +1,6 @@
 export async function getPhotographers() {
   try {
-    const response = await fetch("../data/photographers.json");
+    const response = await fetch("./data/photographers.json");
     if (!response.ok) {
       throw new Error("Network response was not ok " + response.statusText);
     }
@@ -13,7 +13,7 @@ export async function getPhotographers() {
 }
 export async function getMediaPhotographerById(id) {
   try {
-    const response = await fetch("../data/photographers.json");
+    const response = await fetch("./data/photographers.json");
     if (!response.ok) {
       throw new Error("Network response was not ok " + response.statusText);
     }
