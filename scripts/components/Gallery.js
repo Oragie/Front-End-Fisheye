@@ -7,8 +7,11 @@ export function PhotographGallery(photographer, photographerMedia) {
   const gallery = document.createElement("section");
   gallery.classList.add("image-container");
 
+  // Trier les médias par nombre de likes décroissant
+  const sortedMedia = photographerMedia.sort((a, b) => b.likes - a.likes);
+
   // Itérer sur chaque média du tableau de l'api
-  photographerMedia.forEach((media) => {
+  sortedMedia.forEach((media) => {
     // Créer une nouvelle section pour chaque média
     const galleryCard = document.createElement("article");
     galleryCard.classList.add(`gallery_card_${media.id}`);
