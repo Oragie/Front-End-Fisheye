@@ -34,11 +34,11 @@ export function photographerFactory() {
     const updateGallery = (sortedMedia) => {
       const existingGallery = document.querySelector(".image-container");
       if (existingGallery) {
-        console.log("Suppression de la galerie existante...");
+        // console.log("Suppression de la galerie existante...");
         existingGallery.remove(); // Supprime la galerie actuelle avant d'en créer une nouvelle
       }
 
-      console.log("Création d'une nouvelle galerie avec les médias triés...");
+      // console.log("Création d'une nouvelle galerie avec les médias triés...");
       const gallery = PhotographGallery(photographer, sortedMedia);
       main.appendChild(gallery);
     };

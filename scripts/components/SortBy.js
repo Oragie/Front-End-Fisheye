@@ -35,7 +35,7 @@ export function SortBy(photographerMedia, updateGallery) {
       sortedMedia.sort((a, b) => a.title.localeCompare(b.title));
     }
 
-    console.log(`Tri par ${currentSelection}`, sortedMedia); // Vérifier les médias triés
+    // console.log(`Tri par ${currentSelection}`, sortedMedia); // Vérifier les médias triés
     return sortedMedia;
   }
   //------------------------------------
@@ -99,6 +99,10 @@ export function SortBy(photographerMedia, updateGallery) {
   dropdownWrapper.appendChild(dropdownContent);
   sortBy.appendChild(textH2);
   sortBy.appendChild(dropdownWrapper);
+
+  // Appel du tri initial par popularité et mise à jour de la galerie
+  const initialSortedMedia = sortMedia(); // Tri initial par popularité
+  updateGallery(initialSortedMedia); // Mise à jour de la galerie
 
   return sortBy;
 }

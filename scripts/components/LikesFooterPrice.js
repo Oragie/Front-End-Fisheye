@@ -13,7 +13,7 @@ export function LikesFooterPrice(photographer, photographerMedia) {
     totalLikes += media.likes;
   });
 
-  console.log("Total des likes :", totalLikes);
+  // console.log("Total des likes :", totalLikes);
 
   // Créer un élément pour afficher les likes
   const likesContainer = document.createElement("div");

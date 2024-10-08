@@ -19,9 +19,13 @@ async function init() {
 
     if (photographer) {
       const photographerMedia = await getMediaPhotographerById(photographerId);
+
+      // Trier les médias par popularité ici
+      const sortedMedia = photographerMedia.sort((a, b) => b.likes - a.likes);
+
       const { createPhotographerPage } = photographerFactory();
 
-      createPhotographerPage(photographer, photographerMedia);
+      createPhotographerPage(photographer, sortedMedia);
     } else {
       console.error(`aucun photographer avec cette id: ${photographerId}`);
     }
