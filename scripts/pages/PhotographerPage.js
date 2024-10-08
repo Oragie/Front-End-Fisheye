@@ -1,7 +1,7 @@
 import { getPhotographers } from "../api/api.js";
 import { getMediaPhotographerById } from "../api/api.js";
 
-import { photographerFactory } from "../factory/photographer.js";
+import { photographerFactory } from "../template/photographer.js";
 
 // fonction to "get" photographer ID de l'URL
 function getPhotographerIdFromUrl() {

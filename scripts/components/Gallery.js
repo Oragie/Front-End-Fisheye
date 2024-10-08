@@ -1,8 +1,9 @@
 import { LightBox } from "./LightBox.js";
 // import { updateLightboxContent } from "./LightBox.js";
 import { trapFocus } from "../utils/focusTrapping.js";
+import { createMediaElement } from "../factory/galleryFactory.js"; // Importation de la fonction de vérification
 
-// function to build layout to the gallery photographer
+/// function to build layout to the gallery photographer
 export function PhotographGallery(photographer, photographerMedia) {
   const gallery = document.createElement("section");
   gallery.classList.add("image-container");
@@ -13,31 +14,10 @@ export function PhotographGallery(photographer, photographerMedia) {
     const galleryCard = document.createElement("article");
     galleryCard.classList.add(`gallery_card_${media.id}`);
 
-    const mediaLink = document.createElement("button");
-    mediaLink.id = "gallery_mediaLink";
-    mediaLink.setAttribute("aria-label", `${media.title}`); // Description dynamique
+    // Utiliser la fonction externe pour créer l'élément média
+    const mediaLink = createMediaElement(photographer, media);
 
-    mediaLink.setAttribute("active-index", media.id);
-
-    // Vérifiez le type de média pour décider de créer une image ou une vidéo
-    if (media.image) {
-      const imgMedia = document.createElement("img");
-      imgMedia.src = `assets/images/${photographer.name}/${media.image}`;
-      imgMedia.alt = `${media.title}`;
-      imgMedia.classList.add(`${media.id}`);
-      mediaLink.appendChild(imgMedia);
-    } else if (media.video) {
-      const videoMedia = document.createElement("video");
-      videoMedia.title = `${media.title}`;
-      videoMedia.classList.add("${media.id}");
-      const source = document.createElement("source");
-      source.src = `assets/images/${photographer.name}/${media.video}`;
-      source.type = `video/mp4`;
-
-      videoMedia.appendChild(source);
-      mediaLink.appendChild(videoMedia);
-    }
-
+    // Ajouter la logique de lien (si elle est requise)
     mediaLink.href = `assets/images/${photographer.name}/${
       media.image || media.video
     }`;
@@ -61,46 +41,43 @@ export function PhotographGallery(photographer, photographerMedia) {
     likeButton.setAttribute(
       "aria-label",
       `Likes icon with actual ${media.likes}`
-    ); // Description dynamique
+    );
 
     const likeIcon = document.createElement("i");
     likeIcon.classList.add("fa-solid", "fa-heart", "full--heart");
 
-    //** */ Ajouter l'événement de clic pour le bouton like
-
-    let hasLiked = false; // Pour éviter les multiples clics
+    // Ajouter l'événement de clic pour le bouton like
+    let hasLiked = false;
     likeButton.addEventListener("click", () => {
       if (!hasLiked) {
-        media.likes++; // Augmenter le nombre de likes pour ce média
+        media.likes++; // Augmenter le nombre de likes
         mediaLikesCount.textContent = media.likes; // Mettre à jour l'affichage
-        hasLiked = true; // Marquer que le like a été ajouté
+        hasLiked = true;
 
-        // ** Déclencher l'événement Custom avec l'ajout d'un like **
         const likeEvent = new CustomEvent("mediaLiked", {
-          detail: { mediaLikes: 1 }, // Incrémenter de 1
+          detail: { mediaLikes: 1 },
         });
         document.dispatchEvent(likeEvent); // Déclencher l'événement
       } else {
-        media.likes--; // Diminuer le nombre de likes pour ce média
+        media.likes--; // Diminuer le nombre de likes
         mediaLikesCount.textContent = media.likes; // Mettre à jour l'affichage
-        hasLiked = false; // Marquer que le like a été retiré
+        hasLiked = false;
 
-        // ** Déclencher l'événement Custom avec le retrait d'un like **
         const unlikeEvent = new CustomEvent("mediaLiked", {
-          detail: { mediaLikes: -1 }, // Décrémenter de 1
+          detail: { mediaLikes: -1 },
         });
         document.dispatchEvent(unlikeEvent); // Déclencher l'événement
       }
     });
 
-    // ** Ajout de l'événement pour ouvrir la lightbox **
+    // Ajouter l'événement pour ouvrir la lightbox
     mediaLink.addEventListener("click", (event) => {
       const activeIndex = event.currentTarget.getAttribute("active-index");
 
       // Ouvrir la lightbox avec l'activeIndex actuel
       const lightbox = LightBox(photographer, photographerMedia, activeIndex);
 
-      // Empêcher le comportement par défaut (si nécessaire)
+      // Empêcher le comportement par défaut
       event.preventDefault();
 
       trapFocus(lightbox);
