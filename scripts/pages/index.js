@@ -1,6 +1,6 @@
 import { getPhotographers } from "../api/api.js";
 
-import { photographerFactory } from "../factory/photographer.js";
+import { photographerFactory } from "../template/photographer.js";
 
 // function to call api and template for index.html
 async function init() {

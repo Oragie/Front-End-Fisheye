@@ -17,11 +17,6 @@ export function PhotographGallery(photographer, photographerMedia) {
     // Utiliser la fonction externe pour créer l'élément média
     const mediaLink = createMediaElement(photographer, media);
 
-    // Ajouter la logique de lien (si elle est requise)
-    mediaLink.href = `assets/images/${photographer.name}/${
-      media.image || media.video
-    }`;
-
     // section pour la description et les likes
     const description = document.createElement("section");
     description.classList.add("description");

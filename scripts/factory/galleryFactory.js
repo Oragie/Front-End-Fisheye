@@ -1,4 +1,3 @@
-// galleryFactory.js
 export function createMediaElement(photographer, media) {
   const mediaLink = document.createElement("button");
   mediaLink.id = "gallery_mediaLink";
@@ -11,6 +10,7 @@ export function createMediaElement(photographer, media) {
     imgMedia.src = `assets/images/${photographer.name}/${media.image}`;
     imgMedia.alt = `${media.title}`;
     imgMedia.classList.add(`${media.id}`);
+    mediaLink.href = `assets/images/${photographer.name}/${media.image}`;
     mediaLink.appendChild(imgMedia);
   } else if (media.video) {
     const videoMedia = document.createElement("video");
@@ -19,6 +19,7 @@ export function createMediaElement(photographer, media) {
     const source = document.createElement("source");
     source.src = `assets/images/${photographer.name}/${media.video}`;
     source.type = "video/mp4";
+    mediaLink.href = `assets/images/${photographer.name}/${media.video}`;
     videoMedia.appendChild(source);
     mediaLink.appendChild(videoMedia);
   }
